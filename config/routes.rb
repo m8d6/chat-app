@@ -1,14 +1,18 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  get "/login", to: "sessions#new", as: "new_session"
+  post "/login", to: "sessions#create"
+  delete "/logout", to: "sessions#destroy"
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
-  get "up" => "rails/health#show", as: :rails_health_check
+  get "/signup", to: "users#new"
+  post "/signup", to: "users#create"
 
-  # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
-  # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-  # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
+  get "/password/reset", to: "passwords#new", as: "new_password"
+  post "/password/reset", to: "passwords#create", as: "password_reset"
+  get "/password/reset/:token", to: "passwords#edit", as: "edit_password"
+  patch "/password/reset/:token", to: "passwords#update"
 
-  # Defines the root path route ("/")
-  # root "posts#index"
+  root "dashboard#index" # Ana sayfa olarak dashboard'u kullanalım
+  
+  # Oturum gerektiren sayfalar için
+  get "/dashboard", to: "dashboard#index"
 end

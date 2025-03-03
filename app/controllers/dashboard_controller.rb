@@ -1,5 +1,6 @@
 class DashboardController < ApplicationController
+  before_action :require_authentication
+
   def index
-    # Ana sayfa içeriği buraya gelecek
   end
 end 

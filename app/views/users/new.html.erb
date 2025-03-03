@@ -1,29 +1,158 @@
-<div class="mx-auto md:w-2/3 w-full">
-  <% if alert = flash[:alert] %>
-    <p class="py-2 px-3 bg-red-50 mb-5 text-red-500 font-medium rounded-lg inline-block" id="alert"><%= alert %></p>
-  <% end %>
-
-  <h1 class="font-bold text-4xl">Sign up</h1>
-
-  <%= form_with model: @user, url: signup_path, class: "contents" do |form| %>
-    <div class="my-5">
-      <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", class: "block shadow-sm rounded-md border border-gray-400 focus:outline-blue-600 px-3 py-2 mt-2 w-full" %>
+<div class="min-h-screen bg-gradient-to-b from-blue-50 to-white flex flex-col justify-center">
+  <div class="sm:mx-auto sm:w-full sm:max-w-md px-4">
+    <%# Logo veya site ismi için alan %>
+    <div class="text-center">
+      <%# Logo veya site ismi buraya %>
+      <h1 class="text-4xl font-bold text-blue-600 mb-2">Chat App</h1>
     </div>
 
-    <div class="my-5">
-      <%= form.password_field :password, required: true, autocomplete: "new-password", placeholder: "Create a password", minlength: 12, maxlength: 72, class: "block shadow-sm rounded-md border border-gray-400 focus:outline-blue-600 px-3 py-2 mt-2 w-full" %>
-    </div>
-
-    <div class="my-5">
-      <%= form.password_field :password_confirmation, required: true, autocomplete: "new-password", placeholder: "Confirm your password", class: "block shadow-sm rounded-md border border-gray-400 focus:outline-blue-600 px-3 py-2 mt-2 w-full" %>
-    </div>
-
-    <div class="inline">
-      <%= form.submit "Sign up", class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer" %>
-    </div>
-  <% end %>
-
-  <div class="mt-4 text-sm text-gray-500">
-    Already have an account? <%= link_to "Sign in", new_session_path, class: "text-gray-700 underline hover:no-underline" %>
+    <%# Başlık ve alt metin %>
+    <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+      Hesap Oluştur
+    </h2>
+    <p class="mt-2 text-center text-sm text-gray-600">
+      Zaten hesabınız var mı?
+      <%= link_to "Giriş yapın", new_session_path, class: "font-medium text-blue-600 hover:text-blue-500 transition-colors duration-150" %>
+    </p>
   </div>
+
+  <%# Form container %>
+  <div class="mt-8 sm:mx-auto w-full max-w-[95%] sm:max-w-md md:max-w-lg">
+    <div class="bg-white py-8 px-4 sm:px-10 shadow-xl rounded-xl border border-gray-100">
+      <%# Hata mesajları %>
+      <% if alert = flash[:alert] %>
+        <div class="rounded-md bg-red-50 p-4 mb-6">
+          <div class="flex">
+            <div class="flex-shrink-0">
+              <svg class="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+              </svg>
+            </div>
+            <div class="ml-3">
+              <p class="text-sm font-medium text-red-800"><%= alert %></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+      <%# Form %>
+      <%= form_with model: @user, url: signup_path, data: { turbo: false }, class: "space-y-6" do |form| %>
+        <%# Email alanı %>
+        <div>
+          <%= form.label :email_address, "Email adresi", class: "block text-sm font-medium text-gray-700" %>
+          <div class="mt-1 relative rounded-md shadow-sm">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+              </svg>
+            </div>
+            <%= form.email_field :email_address, required: true, autofocus: true, 
+                autocomplete: "username",
+                placeholder: "ornek@email.com",
+                class: "appearance-none block w-full pl-10 px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition duration-150" %>
+          </div>
+        </div>
+
+        <%# Parola alanı %>
+        <div>
+          <%= form.label :password, "Parola", class: "block text-sm font-medium text-gray-700" %>
+          <div class="mt-1 relative rounded-md shadow-sm">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+              </svg>
+            </div>
+            <%= form.password_field :password, required: true, 
+                autocomplete: "new-password",
+                placeholder: "••••••••",
+                class: "appearance-none block w-full pl-10 px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition duration-150" %>
+          </div>
+          <%# Parola gereksinimleri %>
+          <div class="mt-2 bg-gray-50 rounded-md p-4">
+            <p class="text-sm font-medium text-gray-700 mb-2">
+              Parola şunları içermelidir:
+            </p>
+            <ul class="text-sm text-gray-600 space-y-1">
+              <li class="flex items-center">
+                <svg class="h-4 w-4 text-gray-400 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                En az 8 karakter
+              </li>
+              <li class="flex items-center">
+                <svg class="h-4 w-4 text-gray-400 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                En az bir büyük harf
+              </li>
+              <li class="flex items-center">
+                <svg class="h-4 w-4 text-gray-400 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                En az bir küçük harf
+              </li>
+              <li class="flex items-center">
+                <svg class="h-4 w-4 text-gray-400 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                En az bir sayı
+              </li>
+              <li class="flex items-center">
+                <svg class="h-4 w-4 text-gray-400 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                En az bir sembol
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <%# Parola tekrar alanı %>
+        <div>
+          <%= form.label :password_confirmation, "Parola tekrar", class: "block text-sm font-medium text-gray-700" %>
+          <div class="mt-1 relative rounded-md shadow-sm">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+              </svg>
+            </div>
+            <%= form.password_field :password_confirmation, required: true, 
+                autocomplete: "new-password",
+                placeholder: "••••••••",
+                class: "appearance-none block w-full pl-10 px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition duration-150" %>
+          </div>
+        </div>
+
+        <%# Kullanıcı sözleşmesi %>
+        <div class="flex items-start">
+          <div class="flex items-center h-5">
+            <%= form.check_box :terms_of_service, required: true, 
+                class: "h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded transition duration-150" %>
+          </div>
+          <div class="ml-3">
+            <label for="user_terms_of_service" class="text-sm text-gray-700">
+              <button type="button" 
+                      data-controller="modal" 
+                      data-action="modal#open" 
+                      data-modal-url-value="<%= terms_path %>"
+                      class="text-blue-600 hover:text-blue-500 transition-colors duration-150">
+                Üyelik sözleşmesini
+              </button>
+              okudum ve kabul ediyorum
+            </label>
+          </div>
+        </div>
+
+        <%# Kayıt ol butonu %>
+        <div>
+          <%= form.submit "Kayıt Ol", 
+              class: "w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-150" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <%# Modal container %>
+  <div id="modal-container"></div>
 </div> 

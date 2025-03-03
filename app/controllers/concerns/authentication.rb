@@ -49,4 +49,10 @@ module Authentication
       Current.session.destroy
       cookies.delete(:session_id)
     end
+
+    def authenticate
+      if session[:user_id]
+        Current.user = User.find_by(id: session[:user_id])
+      end
+    end
 end

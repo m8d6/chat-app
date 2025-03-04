@@ -1,2 +1,2 @@
-module RegistrationHelper
+module RegistrationsHelper
 end

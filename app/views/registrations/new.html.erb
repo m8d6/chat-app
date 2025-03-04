@@ -1,23 +1,110 @@
-<%= form_with model: @user, url: registration_path, class: "flex flex-col gap-4" do |f| %>
-  <div class="flex flex-col gap-1">
-    <%= f.label :email_address %>
-    <%= f.email_field :email_address, class: "border border-grey-100 rounded p-2" %>
+<%= form_with model: @user, url: registration_path, class: "flex flex-col gap-6 p-6 bg-white shadow-lg rounded-lg max-w-md mx-auto" do |f| %>
+  <h2 class="text-2xl font-semibold text-gray-800 text-center">Register</h2>
+
+  <div class="flex flex-col gap-2">
+    <%= f.label :email_address, class: "text-sm font-medium text-gray-700" %>
+    <%= f.email_field :email_address, class: "border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-teal-500 transition" %>
   </div>
 
-  <div class="flex flex-col gap-1">
-    <%= f.label :password %>
-    <%= f.password_field :password, class: "border border-grey-100 rounded p-2" %>
-  </div>
-  
-  <div class="flex flex-col gap-1">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, class: "border border-grey-100 rounded p-2" %>
-  </div>
-  
-  <div class="flex gap-1">
-    <%= f.checkbox :terms_and_service %>
-    <%= f.label :terms_and_service %>
+  <div class="flex flex-col gap-2">
+    <%= f.label :password, class: "text-sm font-medium text-gray-700" %>
+    <%= f.password_field :password, class: "border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-teal-500 transition" %>
   </div>
 
-  <%= f.submit :submit, class: "rounded p-4 bg-teal-600 text-white hover:bg-teal-800 hover:cursor-pointer transition duration-300" %>
+  <div class="flex flex-col gap-2">
+    <%= f.label :password_confirmation, class: "text-sm font-medium text-gray-700" %>
+    <%= f.password_field :password_confirmation, class: "border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-teal-500 transition" %>
+  </div>
+
+  <div class="flex items-center gap-2">
+    <%= f.check_box :terms_and_service, class: "w-4 h-4 text-teal-600 border-gray-300 rounded focus:ring-teal-500" %>
+    <span class="text-sm text-gray-700">
+      I have read and understood the 
+      <a href="#" id="open-modal" class="text-teal-600 hover:underline">Terms and Services</a>
+    </span>
+  </div>
+
+  <%= f.submit "Register", class: "rounded-lg py-3 bg-teal-600 text-white font-semibold hover:bg-teal-700 transition duration-300 text-center cursor-pointer" %>
 <% end %>
+
+<!-- Modal Penceresi -->
+<div id="terms-modal" class="fixed inset-0 flex items-center justify-center hidden">
+  <!-- Modal İçeriği -->
+  <div class="bg-white p-6 rounded-lg shadow-lg w-1/3 max-w-md relative z-10 overflow-hidden">
+    <h2 class="text-xl font-medium text-gray-800 text-center">Terms and Services</h2>
+    
+    <!-- Kaydırılabilir içerik alanı -->
+    <div class="max-h-96 overflow-y-auto mt-4 text-gray-600 text-sm">
+      <p>1. <strong>Acceptance of Terms</strong><br>
+        By accessing or using our Service, you acknowledge that you have read, understood, and agree to be bound by these Terms. If you do not agree to these Terms, please discontinue using the Service.
+      </p>
+      <p>2. <strong>Changes to Terms</strong><br>
+        We reserve the right to modify or update these Terms at any time without prior notice. Any changes will be effective immediately upon posting on this page. We encourage you to review this page periodically to stay informed of any updates.
+      </p>
+      <p>3. <strong>User Responsibilities</strong><br>
+        You agree to use the Service only for lawful purposes and in accordance with these Terms. You must not:
+        <ul class="list-disc pl-5">
+          <li>Violate any applicable law, regulation, or third-party rights.</li>
+          <li>Use the Service to transmit any harmful, offensive, or illegal content.</li>
+          <li>Interfere with or disrupt the Service’s functionality.</li>
+        </ul>
+      </p>
+      <p>4. <strong>Privacy Policy</strong><br>
+        Your use of the Service is also governed by our Privacy Policy, which can be found at [link to Privacy Policy]. By using the Service, you consent to the collection and use of your personal data in accordance with our Privacy Policy.
+      </p>
+      <p>5. <strong>Account Registration</strong><br>
+        To use certain features of the Service, you may need to create an account. You agree to provide accurate, current, and complete information during the registration process and to update your information as necessary. You are responsible for maintaining the confidentiality of your account credentials and for all activities under your account.
+      </p>
+      <p>6. <strong>Intellectual Property</strong><br>
+        The Service and all its content, features, and functionality (including but not limited to text, graphics, logos, images, and software) are owned by or licensed to [Your Company Name] and are protected by intellectual property laws. You may not use, reproduce, or distribute any content from the Service without our prior written consent.
+      </p>
+      <p>7. <strong>Prohibited Activities</strong><br>
+        You agree not to engage in any of the following prohibited activities:
+        <ul class="list-disc pl-5">
+          <li>Unauthorized access to or use of the Service.</li>
+          <li>Uploading or distributing malware, viruses, or any other harmful code.</li>
+          <li>Engaging in fraudulent, deceptive, or abusive behavior.</li>
+        </ul>
+      </p>
+      <p>8. <strong>Termination</strong><br>
+        We may suspend or terminate your access to the Service at any time, without notice, for any reason, including if we believe you have violated these Terms.
+      </p>
+      <p>9. <strong>Limitation of Liability</strong><br>
+        To the fullest extent permitted by law, [Your Company Name] will not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of the Service, even if we have been advised of the possibility of such damages.
+      </p>
+      <p>10. <strong>Governing Law</strong><br>
+        These Terms are governed by and construed in accordance with the laws of [Insert Jurisdiction], without regard to its conflict of law principles.
+      </p>
+      <p>11. <strong>Dispute Resolution</strong><br>
+        Any disputes arising out of or relating to these Terms or the use of the Service will be resolved through binding arbitration in [Insert Jurisdiction], and you consent to the exclusive jurisdiction and venue of the courts in that location.
+      </p>
+    </div>
+
+    <div class="flex justify-center mt-4">
+      <button id="close-modal" class="px-6 py-2 bg-teal-600 text-white font-semibold rounded-lg hover:bg-teal-700 transition">
+        I Understand
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  
+  document.getElementById("open-modal").addEventListener("click", function(event) {
+    event.preventDefault();
+    document.getElementById("terms-modal").classList.remove("hidden");
+  });
+
+ 
+  document.getElementById("close-modal").addEventListener("click", function() {
+    document.getElementById("terms-modal").classList.add("hidden");
+  });
+
+  
+  document.getElementById("terms-modal").addEventListener("click", function(event) {
+    if (event.target === this) {
+      document.getElementById("terms-modal").classList.add("hidden");
+    }
+  });
+</script>

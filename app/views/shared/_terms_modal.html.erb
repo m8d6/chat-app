@@ -1,0 +1,15 @@
+<div id="terms-modal" class="fixed inset-0 flex items-center justify-center hidden">
+  <div class="bg-white p-6 rounded-lg shadow-lg w-1/3 max-w-md relative z-10 overflow-hidden">
+    <h2 class="text-xl font-medium text-gray-800 text-center"><%= t('terms_and_services.title') %></h2>
+    
+    <div class="max-h-96 overflow-y-auto mt-4 text-gray-600 text-sm">
+      <p><%= t('terms_and_services.content') %></p>
+    </div>
+
+    <div class="flex justify-center mt-4">
+      <button id="close-modal" class="px-6 py-2 bg-teal-600 text-white font-semibold rounded-lg hover:bg-teal-700 transition">
+        <%= t('terms_and_services.accept_button') %>
+      </button>
+    </div>
+  </div>
+</div>

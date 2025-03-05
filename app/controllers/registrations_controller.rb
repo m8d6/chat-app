@@ -8,5 +8,18 @@ class RegistrationsController < ApplicationController
   end
 
   def create
+    @user = User.new(user_params)
+
+    if @user.save
+      redirect_to new_registration_path, notice: "Hesabınız başarıyla oluşturuldu! Şimdi giriş yapabilirsiniz."
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:email_address, :password, :password_confirmation, :terms_and_service)
   end
 end

@@ -1,6 +1,14 @@
 <%= form_with model: @user, url: registration_path, class: "flex flex-col gap-6 p-6 bg-white shadow-lg rounded-lg max-w-md mx-auto" do |f| %>
   <h2 class="text-2xl font-semibold text-gray-800 text-center">Register</h2>
 
+  <% if @user.errors.any? %>
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+      <% @user.errors.full_messages.each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+    </div>
+  <% end %>
+
   <div class="flex flex-col gap-2">
     <%= f.label :email_address, class: "text-sm font-medium text-gray-700" %>
     <%= f.email_field :email_address, class: "border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-teal-500 transition" %>
@@ -46,7 +54,7 @@
         <ul class="list-disc pl-5">
           <li>Violate any applicable law, regulation, or third-party rights.</li>
           <li>Use the Service to transmit any harmful, offensive, or illegal content.</li>
-          <li>Interfere with or disrupt the Service’s functionality.</li>
+          <li>Interfere with or disrupt the Service's functionality.</li>
         </ul>
       </p>
       <p>4. <strong>Privacy Policy</strong><br>

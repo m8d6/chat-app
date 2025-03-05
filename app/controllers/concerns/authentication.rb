@@ -14,6 +14,7 @@ module Authentication
 
   private
 
+
   def authenticated?
     resume_session
   end
@@ -50,4 +51,5 @@ module Authentication
     Current.session.destroy
     cookies.delete(:session_id)
   end
+
 end

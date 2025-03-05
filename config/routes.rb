@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
-  resource :registration, only: %i[new create]
-
-  # Sessions rotaları
-  get  "sign_in", to: "sessions#new"
-  post "sign_in", to: "sessions#create"
+   resource :registration, only: [ :new, :create ]
+   root "registrations#new"
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

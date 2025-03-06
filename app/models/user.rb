@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  include PasswordValidatable
+  validates :password, presence: true, password: true
 
   normalizes :email_address, with: ->(e) { e.strip.downcase }
 

@@ -1,0 +1,14 @@
+en:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            password:
+              too_short: "Password is too short (minimum is %{count} characters)"
+              no_special_char: "Password must include at least one special character"
+              no_digit: "Password must include at least one digit"
+              no_uppercase: "Password must include at least one uppercase letter"
+              no_lowercase: "Password must include at least one lowercase letter"
+            terms_and_service:
+              acceptance: "You must accept the terms of service"

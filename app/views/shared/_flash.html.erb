@@ -1,0 +1,11 @@
+<% if flash[:notice] || flash[:alert] %>
+  <% flash_type = flash[:notice] ? "green" : "red" %>
+
+  <div data-controller="flash" 
+       class="fixed top-4 left-1/2 transform -translate-x-1/2 bg-<%= flash_type %>-100 border border-<%= flash_type %>-400 text-<%= flash_type %>-700 px-4 py-3 rounded shadow-lg transition-opacity duration-300"
+       role="alert">
+    <span class="block sm:inline">
+      <%= flash[:notice] || flash[:alert] %>
+    </span>
+  </div>
+<% end %>

@@ -1,0 +1,8 @@
+en:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            terms_and_service:
+              terms_of_use_acceptance_required: "You cannot register without accepting the terms of use." 

@@ -1,12 +1,12 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["modal"]
+  static targets = ["modal", "openButton", "closeButton"]
 
   connect() {
-    this.modal = document.getElementById("terms-modal")
-    this.openButton = document.getElementById("open-modal")
-    this.closeButton = document.getElementById("close-modal")
+  this.modal = this.modalTarget
+    this.openButton = this.openButtonTarget
+    this.closeButton = this.closeButtonTarget
 
     this.openButton.addEventListener("click", (event) => this.open(event))
     this.closeButton.addEventListener("click", () => this.close())

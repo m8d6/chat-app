@@ -4,6 +4,7 @@ class RegistrationsControllerTest < ActionDispatch::IntegrationTest
   test "should get new" do
     get registration_path
     assert_response :success
+    assert_nil flash[:alert]
   end
 
   test "should create user" do
@@ -18,6 +19,8 @@ class RegistrationsControllerTest < ActionDispatch::IntegrationTest
       }
     end
     assert_redirected_to registration_path
+    assert_not_empty flash[:notice]
+    assert_equal I18n.t("registration.success"), flash[:notice]
   end
 
   test "should not create user without terms acceptance" do
@@ -32,6 +35,8 @@ class RegistrationsControllerTest < ActionDispatch::IntegrationTest
       }
     end
     assert_response :unprocessable_entity
+    assert_not_empty flash[:alert]
+    assert_includes flash[:alert], I18n.t("activerecord.errors.messages.terms_of_use_acceptance_required")
   end
 
   test "should not create user with invalid data" do
@@ -46,5 +51,9 @@ class RegistrationsControllerTest < ActionDispatch::IntegrationTest
       }
     end
     assert_response :unprocessable_entity
+    assert_not_empty flash[:alert]
+    assert_includes flash[:alert], I18n.t("activerecords.errors.models.user.attributes.email_address.blank")
+    assert_includes flash[:alert], I18n.t("activerecords.errors.models.user.attributes.password.too_short")
+    assert_includes flash[:alert], I18n.t("activerecords.errors.models.user.attributes.password_confirmation.confirmation")
   end
 end

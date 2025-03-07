@@ -9,5 +9,6 @@ class User < ApplicationRecord
 
   has_many :sessions, dependent: :destroy
 
-  validates :terms_and_service, acceptance: { message: I18n.t("user.terms_of_use.acceptance") }
+  validates :email_address, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :terms_and_service, acceptance: true
 end

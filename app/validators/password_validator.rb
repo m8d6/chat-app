@@ -7,6 +7,11 @@ class PasswordValidator < ActiveModel::EachValidator
   LOWERCASE_REGEX = /[a-z]/
 
   def validate_each(record, attribute, value)
+      if value.nil?
+        record.errors.add attribute, :blank_password
+        return
+      end
+
     unless value.match?(SPECIAL_CHAR_REGEX)
       record.errors.add attribute, :no_special_char
     end

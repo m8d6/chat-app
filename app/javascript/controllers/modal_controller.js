@@ -1,14 +1,25 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["modal"]
+  static values = {
+    triggerSelector: String
+  }
+
+  connect() {
+    if ( this.hasTriggerSelectorValue ) {
+      const triggers = document.querySelectorAll(this.triggerSelectorValue)
+
+      triggers.forEach(trigger => trigger.addEventListener("click", event => this.open(event)))
+    }
+  }
 
   open(event) {
+    console.log("clicked")
     event.preventDefault()
-    this.modalTarget.classList.remove("hidden")
+    this.element.classList.remove("hidden")
   }
 
   close() {
-    this.modalTarget.classList.add("hidden")
+    this.element.classList.add("hidden")
   }
 }

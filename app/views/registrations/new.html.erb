@@ -1,9 +1,8 @@
-<div data-controller="modal">
-  <%= render partial: "form" %>
+<%= render partial: "form" %>
 
-  <%= render 'shared/modal', 
-      id: 'terms-modal', 
-      title: t('terms_and_services.title'), 
-      content: t('terms_and_services.content'),
-      button_text: t('terms_and_services.accept_button') %>
-</div>
+<%= render 'shared/modal', 
+    id: 'terms-modal', 
+    trigger: '.terms-and-service-modal-trigger',
+    title: t('terms_and_services.title'), 
+    content: t('terms_and_services.content'),
+    button_text: t('terms_and_services.accept_button') %>

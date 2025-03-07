@@ -1,5 +1,6 @@
 en:
-  registration:
-    title: "Register"
-    submit_button: "Register"
-    success: "Your account has been successfully created."
+  registrations:
+    new:
+      title: "Register"
+      submit: "Register"
+      success: "Your account has been successfully created."

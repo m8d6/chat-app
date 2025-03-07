@@ -1,7 +1,7 @@
 <div data-controller="modal">
   <%= form_with model: @user, url: registration_path, class: "form-container flex flex-col gap-6 p-6 bg-white shadow-lg rounded-lg max-w-md mx-auto" do |f| %>
     <div class="form-header">
-      <h2 class="text-2xl font-semibold text-gray-800 text-center"><%= t('registration.title') %></h2>
+      <h2 class="text-2xl font-semibold text-gray-800 text-center"><%= t('.title') %></h2>
     </div>
 
     <% if @user.errors.any? %>
@@ -29,29 +29,25 @@
       </div>
     </div>
 
-<div class="form-terms flex items-center gap-2">
-  <%= f.check_box :terms_and_service, class: "w-4 h-4 text-teal-600 border-gray-300 rounded focus:ring-teal-500" %>
-  <%= f.label :terms_and_service, class: "text-sm text-gray-700 cursor-pointer" do %>
-    <%= t('terms_and_services.agreement_text') %>
-    <button type="button" class="text-teal-600 hover:underline" data-action="modal#open">
-      <%= t('terms_and_services.link_text') %>
-    </button>
-  <% end %>
-</div>
-
-
-
-<div class="form-submit">
-  <%= f.submit t('registration.submit_button'), class: "submit-btn rounded-lg py-3 bg-teal-600 text-white font-semibold hover:bg-teal-700 transition duration-300 w-80 mx-auto text-center cursor-pointer mr-8" %>
-</div>
-
-  <% end %>
-
-  <%= render 'shared/modal', modal_id: 'terms-modal', 
-                          modal_title: t('terms_and_services.title'), 
-                          modal_content: t('terms_and_services.content'),
-                          modal_button_text: t('terms_and_services.accept_button') %>
-
+    <div class="form-terms flex items-center gap-2">
+      <%= f.check_box :terms_and_service, class: "w-4 h-4 text-teal-600 border-gray-300 rounded focus:ring-teal-500" %>
+      <%= f.label :terms_and_service, class: "text-sm text-gray-700 cursor-pointer" do %>
+        <%= t('.agreement_text') %>
+      <% end %>
+      <button type="button" class="text-teal-600 hover:underline" data-action="modal#open">
+        <%= t('.link_text') %>
+      </button>
     </div>
-  </div>
+
+    <div class="form-submit">
+      <%= f.submit t('.submit'), class: "submit-btn rounded-lg py-3 bg-teal-600 text-white font-semibold hover:bg-teal-700 transition duration-300 w-80 mx-auto text-center cursor-pointer mr-8" %>
+    </div>
+
+  <% end %>
+
+  <%= render 'shared/modal', 
+      id: 'terms-modal', 
+      title: t('terms_and_services.title'), 
+      content: t('terms_and_services.content'),
+      button_text: t('terms_and_services.accept_button') %>
 </div>

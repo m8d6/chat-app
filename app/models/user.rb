@@ -9,5 +9,7 @@ class User < ApplicationRecord
 
   has_many :sessions, dependent: :destroy
 
+  validates :email_address, uniqueness: true
+  validates :email_address, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :terms_and_service, acceptance: true
 end

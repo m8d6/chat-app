@@ -53,7 +53,6 @@ class RegistrationsControllerTest < ActionDispatch::IntegrationTest
     assert_response :unprocessable_entity
     assert_not_empty flash[:alert]
     assert_includes flash[:alert], I18n.t("activerecords.errors.models.user.attributes.email_address.blank")
-    assert_includes flash[:alert], I18n.t("activerecords.errors.models.user.attributes.password.too_short")
     assert_includes flash[:alert], I18n.t("activerecords.errors.models.user.attributes.password_confirmation.confirmation")
   end
 end

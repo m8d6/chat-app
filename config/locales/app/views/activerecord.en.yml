@@ -1,10 +1,8 @@
 en:
   activerecord:
     errors:
-      messages:
-        too_short: "is too short (minimum is %{count} characters)"
+      messages:    
         no_special_char: "must include at least one special character"
         no_digit: "must include at least one digit"
         no_uppercase: "must include at least one uppercase letter"
         no_lowercase: "must include at least one lowercase letter"
-        terms_of_use_acceptance_required: "You cannot register without accepting the terms of use."

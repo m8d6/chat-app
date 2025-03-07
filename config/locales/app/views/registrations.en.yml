@@ -1,6 +1,8 @@
 en:
   registrations:
-    new:
+    form:
       title: "Register"
+      agreement:
+        text: "I have read and understood the "
+        link: "Terms and Services"
       submit: "Register"
-      success: "Your account has been successfully created."

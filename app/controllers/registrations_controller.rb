@@ -11,7 +11,7 @@ class RegistrationsController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      redirect_to new_registration_path, notice: "Hesabınız başarıyla oluşturuldu! Şimdi giriş yapabilirsiniz."
+      redirect_to new_registration_path, notice: t(".create")
     else
       render :new, status: :unprocessable_entity
     end

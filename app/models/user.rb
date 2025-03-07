@@ -9,5 +9,5 @@ class User < ApplicationRecord
 
   has_many :sessions, dependent: :destroy
 
-  validates :terms_and_service, acceptance: { message: I18n.t("user.terms_of_use.acceptance") }
+  validates :terms_and_service, acceptance: true
 end

@@ -1,5 +1,8 @@
 en:
-  registration:
-    title: "Register"
-    submit_button: "Register"
-    success: "Your account has been successfully created."
+  registrations:
+    form:
+      title: "Register"
+      agreement:
+        text: "I have read and understood the "
+        link: "Terms and Services"
+      submit: "Register"

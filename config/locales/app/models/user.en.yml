@@ -1,0 +1,15 @@
+en:
+  activerecord:
+    models:
+      user:
+        one: "User"
+        other: "Users"
+    attributes:
+      user:
+        terms_and_service: "Terms and Service"
+    errors:
+      models:
+        user:
+          attributes:
+            terms_and_service:
+              accepted: "you can't register without accepting this"

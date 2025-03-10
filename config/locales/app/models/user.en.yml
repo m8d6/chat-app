@@ -1,4 +1,16 @@
 en:
+  terms_and_services:
+    title: "Terms and Services"
+    agreement_text: "I have read and understood the"
+    link_text: "Terms and Services"
+    accept_button: "I Understand"
+    content: |
+      1. Acceptance of Terms:
+      By accessing or using our Service, you acknowledge that you have read, understood, and agree to be bound by these Terms.
+
+      2. Changes to Terms:
+      We reserve the right to modify or update these Terms at any time.
+
   activerecord:
     models:
       user:

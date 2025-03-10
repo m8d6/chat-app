@@ -14,7 +14,6 @@ export default class extends Controller {
   }
 
   open(event) {
-    console.log("clicked")
     event.preventDefault()
     this.element.classList.remove("hidden")
   }

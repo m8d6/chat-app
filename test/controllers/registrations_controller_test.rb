@@ -7,18 +7,18 @@ class RegistrationsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create user" do
-    assert_difference("User.count") do
+    assert_difference("User.count", 1) do
       post registration_path, params: {
         user: {
           email_address: "test@example.com",
-          password: "123abc",
-          password_confirmation: "123abc",
+          password: "123Abc.",
+          password_confirmation: "123Abc.",
           terms_and_service: "1"
         }
       }
     end
     assert_redirected_to registration_path
-    assert_equal I18n.t("registration.success"), flash[:notice]
+    assert_equal I18n.t("registration.create.success"), flash[:notice]
   end
 
   test "should not create user without terms acceptance" do
@@ -33,8 +33,9 @@ class RegistrationsControllerTest < ActionDispatch::IntegrationTest
       }
     end
     assert_response :unprocessable_entity
-    assert_not_empty flash[:alert]
-    assert_includes flash[:alert], I18n.t("activerecord.errors.messages.terms_of_use_acceptance_required")
+
+    assert_not_nil flash[:alert]
+    assert_includes flash[:alert], I18n.t("activerecord.errors.models.user.attributes.terms_and_service.accepted")
   end
 
   test "should not create user with invalid data" do
@@ -49,8 +50,10 @@ class RegistrationsControllerTest < ActionDispatch::IntegrationTest
       }
     end
     assert_response :unprocessable_entity
-    assert_not_empty flash[:alert]
-    assert_includes flash[:alert], I18n.t("activerecords.errors.models.user.attributes.email_address.blank")
-    assert_includes flash[:alert], I18n.t("activerecords.errors.models.user.attributes.password_confirmation.confirmation")
+
+
+    assert_not_nil flash[:alert]
+    assert_includes flash[:alert], I18n.t("activerecord.errors.models.user.attributes.email_address.blank")
+    assert_includes flash[:alert], I18n.t("activerecord.errors.models.user.attributes.password_confirmation.confirmation")
   end
 end

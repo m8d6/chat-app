@@ -9,7 +9,7 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true
   validates :email_address, uniqueness: true
   validates :email_address, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
-  validates :terms_and_service, acceptance: true
+  validates :terms_and_service, acceptance: { accept: "1", message: "must be accepted" }
 
   has_many :sessions, dependent: :destroy
 end

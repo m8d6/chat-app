@@ -2,12 +2,7 @@ require "test_helper"
 
 class UserTest < ActiveSupport::TestCase
   def setup
-    @user = User.new(
-      email_address: "test@example.com",
-      password: "Password123!",
-      password_confirmation: "Password123!",
-      terms_and_service: "1"
-    )
+    @user = users(:test_user)
   end
 
   test "should be valid with valid attributes" do
@@ -15,48 +10,76 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "email should be present" do
-    @user.email_address = ""
-    assert_not @user.valid?
-    assert_includes @user.errors[:email_address], I18n.t("activerecord.errors.models.user.attributes.email_address.blank")
+    user = User.new(
+      password: "Password123!",
+      password_confirmation: "Password123!",
+      terms_and_service: "1"
+    )
+    assert_not user.valid?
+    assert user.errors.where(:email_address, :blank).present?
   end
 
   test "email should be valid format" do
     invalid_emails = %w[user@example user.org example.com user@.com]
     invalid_emails.each do |invalid_email|
-      @user.email_address = invalid_email
-      assert_not @user.valid?, "#{invalid_email} should not be valid"
-      assert_includes @user.errors[:email_address], I18n.t("activerecord.errors.models.user.attributes.email_address.invalid")
+      user = User.new(
+        email_address: invalid_email,
+        password: "Password123!",
+        password_confirmation: "Password123!",
+        terms_and_service: "1"
+      )
+      assert_not user.valid?, "#{invalid_email} should not be valid"
+      assert user.errors.where(:email_address, :invalid).present?
     end
   end
 
   test "password should be present" do
-    @user.password = @user.password_confirmation = ""
-    assert_not @user.valid?
-    assert_includes @user.errors[:password], I18n.t("can't be blank")
+    user = User.new(email_address: "test2@example.com", terms_and_service: "1")
+    assert_not user.valid?
+    assert user.errors.where(:password, :blank).present?
   end
 
   test "password should match confirmation" do
-    @user.password_confirmation = "different"
-    assert_not @user.valid?
-    assert_includes @user.errors[:password_confirmation], I18n.t("doesn't match Password")
+    user = User.new(
+      email_address: "test2@example.com",
+      password: "Password123!",
+      password_confirmation: "different",
+      terms_and_service: "1"
+    )
+    assert_not user.valid?
+    assert user.errors.where(:password_confirmation, :confirmation).present?
   end
 
   test "password should meet minimum length requirement" do
-    @user.password = @user.password_confirmation = "abc12"
-    assert_not @user.valid?
-    assert_includes @user.errors[:password], I18n.t("Password is too short (minimum is 8 characters)")
+    user = User.new(
+      email_address: "test2@example.com",
+      password: "abc12",
+      password_confirmation: "abc12",
+      terms_and_service: "1"
+    )
+    assert_not user.valid?
+    assert user.errors.where(:password, :too_short).present?
   end
 
   test "terms and service should be accepted" do
-    @user.terms_and_service = "0"
-    assert_not @user.valid?
-    assert_includes @user.errors[:terms_and_service], I18n.t("activerecord.errors.models.user.attributes.terms_and_service.accepted")
+    user = User.new(
+      email_address: "test2@example.com",
+      password: "Password123!",
+      password_confirmation: "Password123!",
+      terms_and_service: "0"
+    )
+    assert_not user.valid?
+    assert user.errors.where(:terms_and_service, :accepted).present?
   end
 
   test "email address should be unique" do
-    duplicate_user = @user.dup
-    @user.save
+    duplicate_user = User.new(
+      email_address: @user.email_address,
+      password: "Password123!",
+      password_confirmation: "Password123!",
+      terms_and_service: "1"
+    )
     assert_not duplicate_user.valid?
-   assert_includes duplicate_user.errors[:email_address], "has already been taken"
+    assert duplicate_user.errors.where(:email_address, :taken).present?
   end
 end

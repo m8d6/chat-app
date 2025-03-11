@@ -1,4 +1,5 @@
 <% password_digest = BCrypt::Password.create("password") %>
+<% test_password_digest = BCrypt::Password.create("Password123!") %>
 
 one:
   email_address: one@example.com
@@ -7,3 +8,8 @@ one:
 two:
   email_address: two@example.com
   password_digest: <%= password_digest %>
+
+test_user:
+  email_address: test@example.com
+  password_digest: <%= test_password_digest %>
+  terms_and_service: true

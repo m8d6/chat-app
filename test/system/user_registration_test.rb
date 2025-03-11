@@ -4,50 +4,48 @@ class UserRegistrationTest < ApplicationSystemTestCase
   test "user can register with valid details" do
     visit registration_path
 
-    fill_in "Email", with: "test@example.com"
-    fill_in "Password", with: "password123"
-    fill_in "Password confirmation", with: "password123"
-    check "Terms and service"
-    click_button "Register"
+    fill_in I18n.t("forms.email_label"), with: "test@example.com"
+    fill_in I18n.t("forms.password_label"), with: "password123"
+    fill_in I18n.t("forms.password_confirmation_label"), with: "password123"
+    check I18n.t("forms.terms_and_service_label")
+    click_button I18n.t("forms.register_button")
 
-    assert_text "Registration successful"
+    assert_text I18n.t("flash.registration.success")
   end
 
   test "shows error if email is already taken" do
-    User.create!(email_address: "test@example.com", password: "password123")
-
     visit registration_path
 
-    fill_in "Email", with: "test@example.com"
-    fill_in "Password", with: "password123"
-    fill_in "Password confirmation", with: "password123"
-    check "Terms and service"
-    click_button "Register"
+    fill_in I18n.t("forms.email_label"), with: users(:test_user).email_address
+    fill_in I18n.t("forms.password_label"), with: "password123"
+    fill_in I18n.t("forms.password_confirmation_label"), with: "password123"
+    check I18n.t("forms.terms_and_service_label")
+    click_button I18n.t("forms.register_button")
 
-    assert_text "Email has already been taken"
+    assert_text I18n.t("errors.email_taken")
   end
 
   test "shows error if password confirmation does not match" do
     visit registration_path
 
-    fill_in "Email", with: "newuser@example.com"
-    fill_in "Password", with: "password123"
-    fill_in "Password confirmation", with: "wrongpassword"
-    check "Terms and service"
-    click_button "Register"
+    fill_in I18n.t("forms.email_label"), with: "newuser@example.com"
+    fill_in I18n.t("forms.password_label"), with: "password123"
+    fill_in I18n.t("forms.password_confirmation_label"), with: "wrongpassword"
+    check I18n.t("forms.terms_and_service_label")
+    click_button I18n.t("forms.register_button")
 
-    assert_text "Passwords do not match"
+    assert_text I18n.t("errors.password_mismatch")
   end
 
   test "shows error if password is blank" do
     visit registration_path
 
-    fill_in "Email", with: "newuser@example.com"
-    fill_in "Password", with: ""
-    fill_in "Password confirmation", with: ""
-    check "Terms and service"
-    click_button "Register"
+    fill_in I18n.t("forms.email_label"), with: "newuser@example.com"
+    fill_in I18n.t("forms.password_label"), with: ""
+    fill_in I18n.t("forms.password_confirmation_label"), with: ""
+    check I18n.t("forms.terms_and_service_label")
+    click_button I18n.t("forms.register_button")
 
-    assert_text "Password can't be blank"
+    assert_text I18n.t("errors.password_blank")
   end
 end

@@ -8,7 +8,7 @@ class User < ApplicationRecord
   validates :password,              presence: true, password: true, confirmation: true
   validates :password_confirmation, presence: true
   validates :email_address,         presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
-  validates :terms_and_service,     acceptance: { accept: "1", message: I18n.t("activerecord.errors.models.user.attributes.terms_and_service.accepted") }
+  validates :terms_and_service,     acceptance: true
 
   has_many :sessions, dependent: :destroy
 end

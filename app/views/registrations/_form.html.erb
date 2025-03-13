@@ -6,7 +6,6 @@
   <%= render partial: "components/input", locals: { form: f, field: :email_address,          type: :email,    options: { placeholder: t(".email.placeholder") } } %>
   <%= render partial: "components/input", locals: { form: f, field: :password,               type: :password, options: { placeholder: t(".password.placeholder") } } %>
   <%= render partial: "components/input", locals: { form: f, field: :password_confirmation,  type: :password, options: { placeholder: t(".password_confirmation.placeholder") } } %>
-  <%= render partial: "components/checkbox", locals: { errors: @user.errors.full_messages_for(:terms_and_service) } %>
 
 
   <div class="form-terms flex flex-col gap-2">
@@ -15,11 +14,10 @@
       <%= f.label :terms_and_service, class: "text-sm text-gray-700 cursor-pointer" do %>
         <%= t('.agreement.text') %>
       <% end %>
-      <button type="button" class="text-teal-600 hover:underline terms-and-service-modal-trigger">
-        <%= t('.agreement.link') %>
-      </button>
-    </div>
+      <%= button_tag t('.agreement.link'), type: 'button', class: 'text-teal-600 hover:underline terms-and-service-modal-trigger' %>
+   </div>
 
+  <%= render partial: "components/checkbox", locals: { errors: @user.errors.full_messages_for(:terms_and_service) } %>
   </div>
 
   <div class="form-submit">

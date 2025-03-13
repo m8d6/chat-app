@@ -13,7 +13,7 @@ class RegistrationsController < ApplicationController
     if @user.save
       redirect_to new_registration_path, notice: t(".success")
     else
-      flash.now[:alert] = @user.errors.full_messages.first
+      flash.now[:alert] = t(".failure")
       render :new, status: :unprocessable_entity
     end
   end

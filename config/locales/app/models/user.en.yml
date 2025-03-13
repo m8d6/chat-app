@@ -11,6 +11,10 @@ en:
       2. Changes to Terms:
       We reserve the right to modify or update these Terms at any time.
 
+  registrations:
+    create:
+      success: "Registration successful!"
+
   activerecord:
     models:
       user:
@@ -18,10 +22,15 @@ en:
         other: "Users"
     attributes:
       user:
+        email_address: "Email address"
         terms_and_service: "Terms and Service"
     errors:
       models:
         user:
           attributes:
+            email_address:
+              blank: "Email address can't be blank"
+              invalid: "Email address is invalid"
+              taken: "Email address has already been taken"
             terms_and_service:
-              accepted: "you can't register without accepting this"
+              accepted: "you can't register without accepting this" 

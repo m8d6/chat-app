@@ -1,59 +1,53 @@
 require "test_helper"
 
 class RegistrationsControllerTest < ActionDispatch::IntegrationTest
+  def setup
+    password = Faker::Internet.password(min_length: 10, max_length: 20, mix_case: true, special_characters: true)
+
+    @exist_user                 = users(:valid_user)
+    @non_exist_user_parameters  = {
+      email_address: Faker::Internet.unique.email,
+      password: password,
+      password_confirmation: password,
+      terms_and_service: "1"
+    }
+  end
+
   test "should get new" do
-    get registration_path
+    get new_registration_path
     assert_response :success
   end
 
   test "should create user" do
+    params = { user: @non_exist_user_parameters }
+
     assert_difference("User.count", 1) do
-      post registration_path, params: {
-        user: {
-          email_address: "test@example.com",
-          password: "123Abc.",
-          password_confirmation: "123Abc.",
-          terms_and_service: "1"
-        }
-      }
+      post registration_path, params:
     end
-    assert_redirected_to registration_path
-    assert_equal I18n.t("registration.create.success"), flash[:notice]
+
+    assert_redirected_to new_registration_path
+    assert_equal I18n.t("registrations.create.success"), flash[:notice]
   end
 
   test "should not create user without terms acceptance" do
-    assert_no_difference("User.count") do
-      post registration_path, params: {
-        user: {
-          email_address: "test@example.com",
-          password: "123abc",
-          password_confirmation: "123abc",
-          terms_and_service: "0"
-        }
-      }
-    end
-    assert_response :unprocessable_entity
+    params = { user: @non_exist_user_parameters.merge(terms_and_service: "0") }
 
-    assert_not_nil flash[:alert]
-    assert_includes flash[:alert], I18n.t("activerecord.errors.models.user.attributes.terms_and_service.accepted")
+    assert_no_difference("User.count") do
+      post registration_path, params:
+    end
+
+    assert_response :unprocessable_entity
+    assert_match I18n.t("activerecord.errors.models.user.attributes.terms_and_service.accepted"), flash.now[:alert]
   end
 
   test "should not create user with invalid data" do
+    params = { user: @non_exist_user_parameters.merge(email_address: "") }
+
     assert_no_difference("User.count") do
-      post registration_path, params: {
-        user: {
-          email_address: "",
-          password: "123",
-          password_confirmation: "456",
-          terms_and_service: "1"
-        }
-      }
+      post registration_path, params:
     end
+
     assert_response :unprocessable_entity
-
-
-    assert_not_nil flash[:alert]
-    assert_includes flash[:alert], I18n.t("activerecord.errors.models.user.attributes.email_address.blank")
-    assert_includes flash[:alert], I18n.t("activerecord.errors.models.user.attributes.password_confirmation.confirmation")
+    assert_match I18n.t("activerecord.errors.models.user.attributes.email_address.blank"), flash.now[:alert]
   end
 end

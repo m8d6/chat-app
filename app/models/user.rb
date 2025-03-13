@@ -5,11 +5,10 @@ class User < ApplicationRecord
 
   has_secure_password
 
-  validates :password, presence: true, password: true
+  validates :password,              presence: true, password: true, confirmation: true
   validates :password_confirmation, presence: true
-  validates :email_address, uniqueness: true
-  validates :email_address, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
-  validates :terms_and_service, acceptance: { accept: "1", message: "must be accepted" }
+  validates :email_address,         presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :terms_and_service,     acceptance: true
 
   has_many :sessions, dependent: :destroy
 end

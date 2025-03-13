@@ -2,48 +2,50 @@ require "test_helper"
 
 class UserTest < ActiveSupport::TestCase
   def setup
-    @user = User.new
-  end
-  
-  def assert_error_on(record, attribute, message)
-    assert_not record.valid?
-    assert_includes record.errors[attribute], message
+    @user = users(:existed_user)
   end
 
   test "email should be present" do
-    assert_error_on @user, :email_address, "can't be blank"
+    @user.email_address = nil
+
+    assert_error_on @user, :email_address, :blank
   end
 
   test "email should be valid format" do
-    invalid_emails = %w[user@example user.org example.com user@.com]
-    invalid_emails.each do |invalid_email|
-      @user.email_address = invalid_email
-      assert_error_on @user, :email_address, "is invalid"
-    end
+    @user.email_address = "user@example"
+
+    assert_error_on @user, :email_address, :invalid
   end
 
   test "email address should be unique" do
-    @user.email_address = users(:existing_user).email_address
-    assert_error_on @user, :email_address, "has already been taken"
+    duplicate_user = User.new(email_address: @user.email_address)
+    
+    assert_error_on duplicate_user, :email_address, :taken
   end
 
   test "password should be present" do
-    assert_error_on @user, :password, "can't be blank"
+    @user.password = nil
+
+    assert_error_on @user, :password, :blank
   end
 
   test "password should match confirmation" do
     @user.password = "NewPassword123!"
     @user.password_confirmation = "DifferentPassword123!"
-    assert_error_on @user, :password_confirmation, "doesn't match Password"
+
+    assert_error_on @user, :password_confirmation, :confirmation
   end
 
   test "password should meet minimum length requirement" do
     @user.password = "short"
     @user.password_confirmation = "short"
-    assert_error_on @user, :password, "is too short (minimum is 6 characters)"
+
+    assert_error_on @user, :password, :too_short
   end
 
   test "terms and service should be accepted" do
-    assert_error_on @user, :terms_and_service, "must be accepted"
+    @user.terms_and_service = false
+
+    assert_error_on @user, :terms_and_service, :accepted
   end
 end

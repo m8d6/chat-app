@@ -3,7 +3,11 @@
     <h2 class="text-2xl font-semibold text-gray-800 text-center"><%= t('.title') %></h2>
   </div>
 
-  <%= render 'shared/input_fields', f: f %>
+  <%= render partial: "components/input", locals: { form: f, field: :email_address,          type: :email,    options: { placeholder: t(".email.placeholder") } } %>
+  <%= render partial: "components/input", locals: { form: f, field: :password,               type: :password, options: { placeholder: t(".password.placeholder") } } %>
+  <%= render partial: "components/input", locals: { form: f, field: :password_confirmation,  type: :password, options: { placeholder: t(".password_confirmation.placeholder") } } %>
+  <%= render partial: "components/checkbox", locals: { errors: @user.errors.full_messages_for(:terms_and_service) } %>
+
 
   <div class="form-terms flex flex-col gap-2">
     <div class="flex items-center gap-2">
@@ -16,12 +20,9 @@
       </button>
     </div>
 
-    <% @user.errors.full_messages_for(:terms_and_service).each do |message| %>
-      <p class="text-red-500 text-sm mt-1"><%= message %></p>
-    <% end %>
   </div>
 
   <div class="form-submit">
-    <%= f.submit t('.submit'), class: "submit-btn rounded-lg py-3 bg-teal-600 text-white font-semibold hover:bg-teal-700 transition duration-300 w-full max-w-xs mx-auto text-center cursor-pointer #{'bg-red-500' if @user.errors.any?}" %>
+    <%= f.submit t('.submit'), class: "submit-btn rounded-lg py-3 bg-teal-600 text-white font-semibold hover:bg-teal-700 transition duration-300 w-full max-w-xs mx-auto text-center cursor-pointer" %>
   </div>
 <% end %>

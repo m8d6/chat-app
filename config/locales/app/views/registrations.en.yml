@@ -2,6 +2,12 @@ en:
   registrations:
     form:
       title: "Register"
+      email:
+        placeholder: Email Address
+      password: 
+        placeholder: Password
+      password_confirmation: 
+        placeholder: Password Confirmation
       agreement:
         text: "I have read and understood the "
         link: "Terms and Services"

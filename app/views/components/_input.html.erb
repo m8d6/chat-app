@@ -1,0 +1,18 @@
+<% field_has_error = form.object.errors.where(field).any? %>
+
+<% input_border_color = field_has_error ? 'border-red-500' : 'border-grey-300' %>
+<% input_background_color = field_has_error ? 'bg-red-300' : 'bg-white' %>
+
+<div class="flex flex-col gap-1">
+    <%= form.label field, class: "text-sm font-medium text-gray-700" %>
+    <%= form.send("#{type}_field", field, class: "border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-teal-500 transition #{input_border_color} #{input_background_color}", **options) %>
+    
+    <% if field_has_error %>
+        <ul class="flex flex-col gap-1">
+            <% form.object.errors.full_messages_for(field).each do |error_message| %>
+                <li class="text-red-500 text-sm"><%= error_message %></li>
+            <% end %>
+        </ul>
+    <% end %>
+    
+</div>

@@ -3,4 +3,4 @@ module AssertionsHelper
       assert_not record.valid?
       assert_not_empty record.errors.where(attribute, error_type)
     end
-  end
+end

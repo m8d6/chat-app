@@ -19,7 +19,7 @@ class UserTest < ActiveSupport::TestCase
 
   test "email address should be unique" do
     duplicate_user = User.new(email_address: @user.email_address)
-    
+
     assert_error_on duplicate_user, :email_address, :taken
   end
 

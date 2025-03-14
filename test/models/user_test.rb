@@ -2,7 +2,7 @@ require "test_helper"
 
 class UserTest < ActiveSupport::TestCase
   def setup
-    @user = users(:existed_user)
+    @user = users(:first)
   end
 
   test "email should be present" do

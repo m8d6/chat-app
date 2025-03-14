@@ -4,7 +4,7 @@ class RegistrationsControllerTest < ActionDispatch::IntegrationTest
   def setup
     password = Faker::Internet.password(min_length: 10, max_length: 20, mix_case: true, special_characters: true)
 
-    @exist_user                 = users(:valid_user)
+    @exist_user                 = users(:first)
     @non_exist_user_parameters  = {
       email_address: Faker::Internet.unique.email,
       password: password,

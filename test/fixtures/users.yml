@@ -1,5 +1,4 @@
-# Sadece uniqueness testi için gerekli olan fixture
-existed_user:
+first:
   email_address: existing@example.com
   password_digest: <%= BCrypt::Password.create("Password123!") %>
 

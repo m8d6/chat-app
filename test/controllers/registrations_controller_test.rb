@@ -37,7 +37,7 @@ class RegistrationsControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_response :unprocessable_entity
-    assert_match I18n.t("activerecord.errors.models.user.attributes.terms_and_service.accepted"), flash.now[:alert]
+    assert_match I18n.t("registrations.create.failure"), flash.now[:alert]
   end
 
   test "should not create user with invalid data" do
@@ -48,6 +48,6 @@ class RegistrationsControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_response :unprocessable_entity
-    assert_match I18n.t("activerecord.errors.models.user.attributes.email_address.blank"), flash.now[:alert]
+    assert_match I18n.t("registrations.create.failure"), flash.now[:alert]
   end
 end

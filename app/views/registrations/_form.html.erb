@@ -16,7 +16,7 @@
       <%= button_tag t('.agreement.link'), type: 'button', class: 'text-teal-600 hover:underline terms-and-service-modal-trigger' %>
     </div>
 
-    <%= render 'components/errors', errors: @user.errors.full_messages_for(:terms_and_service) %>
+    <%= render 'components/input_errors', errors: @user.errors.full_messages_for(:terms_and_service) %>
   </div>
 
   <div class="form-submit">

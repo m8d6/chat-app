@@ -7,5 +7,5 @@
   <%= form.label field, class: "text-sm font-medium text-gray-700" %>
   <%= form.send("#{type}_field", field, class: "border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-teal-500 transition #{input_border_color} #{input_background_color}", **options) %>
   
-  <%= render 'components/errors', errors: form.object.errors.full_messages_for(field) %>
+  <%= render 'components/input_errors', errors: form.object.errors.full_messages_for(field) %>
 </div>

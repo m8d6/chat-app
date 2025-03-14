@@ -4,7 +4,7 @@ require "rails/test_help"
 require_relative "helpers/assertions_helper"
 
 class ActiveSupport::TestCase
- include AssertionsHelper
+  include AssertionsHelper
   
   parallelize(workers: :number_of_processors)
 

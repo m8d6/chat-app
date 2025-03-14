@@ -29,8 +29,8 @@ en:
         user:
           attributes:
             email_address:
-              blank: "Email address can't be blank"
-              invalid: "Email address is invalid"
-              taken: "Email address has already been taken"
+              blank: "can't be blank"
+              invalid: "is invalid"
+              taken: "has already been taken"
             terms_and_service:
               accepted: "you can't register without accepting this"

@@ -1,0 +1,43 @@
+en:
+  terms_and_services:
+    title: "Terms and Services"
+    agreement_text: "I have read and understood the"
+    link_text: "Terms and Services"
+    accept_button: "I Understand"
+    content: |
+      1. Acceptance of Terms:
+      By accessing or using our Service, you acknowledge that you have read, understood, and agree to be bound by these Terms.
+
+      2. Changes to Terms:
+      We reserve the right to modify or update these Terms at any time.
+
+  registrations:
+    create:
+      success: "Registration successful!"
+      failure: "Registration failed. Please check the form for errors."
+
+  activerecord:
+    models:
+      user:
+        one: "User"
+        other: "Users"
+    attributes:
+      user:
+        email_address: "Email address"
+        password: "Password"
+        password_confirmation: "Password confirmation"
+        terms_and_service: "Terms and Service"
+    errors:
+      models:
+        user:
+          attributes:
+            email_address:
+              blank: "can't be blank"
+              invalid: "is invalid"
+              taken: "has already been taken"
+            password:
+              blank: "can't be blank"
+            password_confirmation:
+              confirmation: "doesn't match Password"
+            terms_and_service:
+              accepted: "you can't register without accepting this"

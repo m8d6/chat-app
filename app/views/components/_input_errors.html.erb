@@ -1,0 +1,7 @@
+<% if errors.present? %>
+  <ul class="text-red-500 text-sm mt-1 space-y-1">
+    <% errors.each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>

@@ -1,0 +1,25 @@
+<%= form_with model: @user, url: registration_path, class: "form-container flex flex-col gap-6 p-6 bg-white shadow-lg rounded-lg max-w-md mx-auto" do |f| %>
+  <div class="form-header">
+    <h2 class="text-2xl font-semibold text-gray-800 text-center"><%= t('.title') %></h2>
+  </div>
+
+  <%= render partial: "components/input", locals: { form: f, field: :email_address, type: :email, options: { placeholder: t(".email.placeholder") } } %>
+  <%= render partial: "components/input", locals: { form: f, field: :password, type: :password, options: { placeholder: t(".password.placeholder") } } %>
+  <%= render partial: "components/input", locals: { form: f, field: :password_confirmation, type: :password, options: { placeholder: t(".password_confirmation.placeholder") } } %>
+
+  <div class="form-terms flex flex-col gap-2">
+    <div class="flex items-center gap-2">
+      <%= f.check_box :terms_and_service %>
+      <%= f.label :terms_and_service, class: "text-sm text-gray-700 cursor-pointer" do %>
+        <%= t('.agreement.text') %>
+      <% end %>
+      <%= button_tag t('.agreement.link'), type: 'button', class: 'text-teal-600 hover:underline terms-and-service-modal-trigger' %>
+    </div>
+
+    <%= render 'components/input_errors', errors: @user.errors.full_messages_for(:terms_and_service) %>
+  </div>
+
+  <div class="form-submit">
+    <%= f.submit t('.submit'), class: "submit-btn rounded-lg py-3 bg-teal-600 text-white font-semibold hover:bg-teal-700 transition duration-300 w-full max-w-xs mx-auto text-center cursor-pointer" %>
+  </div>
+<% end %>

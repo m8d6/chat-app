@@ -1,0 +1,7 @@
+<%= render partial: "form" %>
+
+<%= render 'shared/modal', 
+    trigger: '.terms-and-service-modal-trigger',
+    title: t('terms_and_services.title'), 
+    content: t('terms_and_services.content'),
+    cancel_text: t('terms_and_services.accept_button') %>

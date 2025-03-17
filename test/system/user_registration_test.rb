@@ -16,7 +16,7 @@ class UserRegistrationTest < ApplicationSystemTestCase
   test "shows error if email is already taken" do
     visit registration_path
 
-    fill_in I18n.t("registrations.form.email.placeholder"), with: users(:test_user).email_address
+    fill_in I18n.t("registrations.form.email.placeholder"), with: users(:first).email_address
     fill_in I18n.t("registrations.form.password.placeholder"), with: "password123"
     fill_in I18n.t("registrations.form.password_confirmation.placeholder"), with: "password123"
     check I18n.t("terms_and_services.agreement_text") + " " + I18n.t("terms_and_services.link_text")

@@ -7,9 +7,7 @@ class UserRegistrationTest < ApplicationSystemTestCase
     find(I18n.t("forms.user.email_selector")).fill_in with: "test@example.com"
     find(I18n.t("forms.user.password_selector")).fill_in with: "Password123!"
     find(I18n.t("forms.user.password_confirmation_selector")).fill_in with: "Password123!"
-    
     find(I18n.t("forms.user.terms_and_service_selector")).check
-    
     find(I18n.t("forms.user.submit_selector")).click
 
     assert_text I18n.t("registrations.create.success")

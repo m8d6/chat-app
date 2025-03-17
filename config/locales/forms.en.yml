@@ -1,0 +1,17 @@
+en:
+  forms:
+    user:
+      email_name: "user[email_address]"
+      password_name: "user[password]"
+      password_confirmation_name: "user[password_confirmation]"
+      terms_and_service_name: "user[terms_and_service]"
+      email_placeholder: "Enter your email address"
+      password_placeholder: "Create a password"
+      password_confirmation_placeholder: "Confirm your password"
+      terms_and_service_id: "user_terms_and_service"
+      submit_text: "Register"
+      email_selector: "input[id$='email_address']"
+      password_selector: "input[id$='password']:not([id$='password_confirmation'])"
+      password_confirmation_selector: "input[id$='password_confirmation']"
+      terms_and_service_selector: "input[id$='terms_and_service']"
+      submit_selector: "input[type='submit']"

@@ -20,11 +20,11 @@ class PasswordValidator < ActiveModel::EachValidator
     unless value.match?(UPPERCASE_REGEX)
       record.errors.add attribute, :no_uppercase
     end
-  
+
     unless value.match?(LOWERCASE_REGEX)
       record.errors.add attribute, :no_lowercase
     end
-    
+
     if value.length < MIN_LENGTH
       record.errors.add attribute, :too_short, count: MIN_LENGTH
     end

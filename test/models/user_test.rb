@@ -12,9 +12,12 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "email should be valid format" do
-    @user.email_address = "user@example"
+    invalid_formats = [ "user@", "plainaddress", "user@.com", "@example.com" ]
 
-    assert_error_on @user, :email_address, :invalid
+    invalid_formats.each do |format|
+      @user.email_address = format
+      assert_error_on @user, :email_address, :invalid
+    end
   end
 
   test "email address should be unique" do

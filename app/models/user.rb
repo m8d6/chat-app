@@ -11,4 +11,24 @@ class User < ApplicationRecord
   validates :terms_and_service,     acceptance: true
 
   has_many :sessions, dependent: :destroy
+
+  def activate!
+    update_columns(
+      email_confirmed: true,
+      email_verified_at: Time.current,
+      confirmation_token: nil
+    )
+  end
+
+  def activated?
+    email_confirmed?
+  end
+
+  private
+
+  def generate_activation_token
+    self.confirmation_token = SecureRandom.urlsafe_base64
+    self.email_confirmed = false
+    self.email_verified_at = nil
+  end
 end

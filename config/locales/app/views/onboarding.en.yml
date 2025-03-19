@@ -25,3 +25,5 @@ en:
         placeholder: "Enter your password"
       submit: "Sign in"
       register_link: "Don't have an account? Register Now." 
+      post_registration:
+      sign_in_prompt: "Please sign in to continue."

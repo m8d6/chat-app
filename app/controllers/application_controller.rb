@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user!
     unless user_signed_in?
-      redirect_to login_path, alert: "Please sign in to continue."
+      redirect_to login_path, alert: t("sessions.form.sign_in_prompt")
     end
   end
 

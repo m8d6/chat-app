@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
       end
 
       session[:user_id] = @session.user.id
-      
+
       redirect_to root_path, notice: t(".success")
     else
       flash.now[:alert] = t(".failure")

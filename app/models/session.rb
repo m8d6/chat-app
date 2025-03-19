@@ -16,7 +16,7 @@ class Session
 
   def authenticate_user
     @user = User.find_by(email_address: email_address)&.authenticate(password)
-    
+
     return if @user
 
     errors.add :base, :invalid_credentials

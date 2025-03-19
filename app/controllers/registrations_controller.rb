@@ -12,8 +12,8 @@ class RegistrationsController < ApplicationController
 
     if @user.save
       UserMailer.activation_email(@user).deliver_later
-      redirect_to new_registration_path, 
-        notice: t(".success_with_activation") 
+      redirect_to new_registration_path,
+        notice: t(".success_with_activation")
     else
       flash.now[:alert] = t(".failure")
       render :new, status: :unprocessable_entity

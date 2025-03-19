@@ -1,7 +1,15 @@
-<h1><%= t(".welcome") %></h1>
+<div class="form-container flex flex-col gap-6 p-6 bg-white shadow-lg rounded-lg max-w-md mx-auto">
+  <div class="form-header">
+    <h2 class="text-2xl font-semibold text-gray-800 text-center"><%= t(".welcome") %></h2>
+  </div>
 
-<p><%= t(".please_activate") %></p>
+  <div class="text-center text-gray-600">
+    <p><%= t(".please_activate") %></p>
+  </div>
 
-<p>
-  <%= link_to t(".activate_account"), @activation_url %>
-</p> 
+  <div class="form-submit">
+    <%= link_to t(".activate_account"), 
+                @activation_url, 
+                class: "submit-btn rounded-lg py-3 bg-teal-600 text-white font-semibold hover:bg-teal-700 transition duration-300 w-full max-w-xs mx-auto text-center cursor-pointer no-underline inline-block" %>
+  </div>
+</div> 

@@ -1,0 +1,29 @@
+en:
+  registrations:
+    create:
+      success_with_activation: "Registration successful! Please check your email."
+      failure: "Registration failed."
+    confirm:
+      activation_success: "Your account has been successfully activated. You can now login."
+      invalid_token: "Invalid activation link."
+  user_mailer:
+    activation_email:
+      activation_subject: "Activate your account"
+      welcome: "Welcome!"
+      please_activate: "Please click the link below to activate your account:"
+      activate_account: "Activate My Account"
+  sessions:
+    create:
+      success: "Successfully signed in!"
+      failure: "Invalid email or password."
+      activation_required: "Please activate your account first. Check your email for activation instructions."
+  errors:
+    messages:
+      invalid_credentials: "Invalid email or password."
+  activemodel:
+    errors:
+      models:
+        session:
+          attributes:
+            base:
+              invalid_credentials: "Invalid email or password."

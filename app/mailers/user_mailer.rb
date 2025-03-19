@@ -7,7 +7,7 @@ class UserMailer < ApplicationMailer
     
     mail(
       to: @user.email_address,
-      subject: t(".activation_subject")
+      subject: I18n.t("user_mailer.activation_email.activation_subject")
     )
   end
 end

@@ -17,13 +17,11 @@ en:
       success: "Successfully signed in!"
       failure: "Invalid email or password."
       activation_required: "Please activate your account first. Check your email for activation instructions."
-  errors:
-    messages:
-      invalid_credentials: "Invalid email or password."
-  activemodel:
-    errors:
-      models:
-        session:
-          attributes:
-            base:
-              invalid_credentials: "Invalid email or password."
+    form:
+      title: "Sign in to your account"
+      email:
+        placeholder: "Enter your email"
+      password:
+        placeholder: "Enter your password"
+      submit: "Sign in"
+      register_link: "Don't have an account? Register Now." 

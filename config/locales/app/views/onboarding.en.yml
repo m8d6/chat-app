@@ -10,7 +10,7 @@ en:
     activation_email:
       activation_subject: "Activate your account"
       welcome: "Welcome!"
-      please_activate: "Please click the button below to activate your account:"
+      please_activate: "Please click the link below to activate your account:"
       activate_account: "Activate My Account"
   sessions:
     create:

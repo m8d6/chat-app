@@ -2,56 +2,12 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <style>
-      /* Email styles need to be inline */
-      .form-container {
-        max-width: 32rem;
-        margin: 0 auto;
-        padding: 1.5rem;
-        background-color: white;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        border-radius: 0.5rem;
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
-      }
-
-      .form-header h2 {
-        font-size: 1.5rem;
-        font-weight: 600;
-        color: #1a202c;
-        text-align: center;
-      }
-
-      .text-center {
-        text-align: center;
-      }
-
-      .text-gray-600 {
-        color: #4a5568;
-      }
-
-      .submit-btn {
-        display: inline-block;
-        padding: 0.75rem;
-        background-color: #0d9488;
-        color: white;
-        font-weight: 600;
-        border-radius: 0.5rem;
-        text-decoration: none;
-        text-align: center;
-        width: 100%;
-        max-width: 20rem;
-        margin: 0 auto;
-      }
-
-      .submit-btn:hover {
-        background-color: #0f766e;
-      }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
 
-  <body>
-    <%= yield %>
+  <body style="margin: 0; padding: 0; background-color: #f3f4f6; font-family: system-ui, -apple-system, sans-serif;">
+    <div style="padding: 2rem;">
+      <%= yield %>
+    </div>
   </body>
 </html>

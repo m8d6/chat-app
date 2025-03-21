@@ -15,13 +15,22 @@ class SessionsController < ApplicationController
         return redirect_to login_path, alert: t(".activation_required")
       end
 
-      session[:user_id] = @session.user.id
+      start_new_session_for(@session.user)
 
-      redirect_to root_path, notice: t(".success")
+      if @session.user.onboarding_completed_at.nil?
+        redirect_to onboarding_path, notice: t(".success")
+      else
+        redirect_to root_path, notice: t(".success")
+      end
     else
       flash.now[:alert] = t(".failure")
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    terminate_session
+    redirect_to login_path, notice: "Başarıyla çıkış yaptınız"
   end
 
   private

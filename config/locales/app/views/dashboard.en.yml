@@ -1,0 +1,20 @@
+en:
+  dashboard:
+    index:
+      welcome: "Welcome, %{name}!"
+    profile:
+      welcome: "Welcome, %{name}!"
+      profile_info: "User Information"
+      first_name:
+        label: "First Name"
+      last_name:
+        label: "Last Name"
+      email:
+        label: "Email"
+      birth_date:
+        label: "Date of Birth"
+      gender:
+        label: "Gender"
+      title:
+        label: "Title"
+      logout: "Sign Out" 

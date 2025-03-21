@@ -4,13 +4,20 @@ class OnboardingController < ApplicationController
   layout "unauthenticated"
 
   def show
+    @user = current_user
   end
 
   def update
-    if current_user.update(onboarding_params)
-      current_user.update(onboarding_completed_at: Time.current)
-      redirect_to root_path, notice: t(".success")
+    @user = current_user
+    
+    @user.skip_password_validation = true
+    
+    if @user.update(onboarding_params)
+      @user.update_column(:onboarding_completed_at, Time.current)
+      redirect_to dashboard_path, notice: t(".success")
     else
+      puts "Validation errors: #{@user.errors.full_messages}"
+      Rails.logger.debug "Validation errors: #{@user.errors.full_messages}"
       render :show, status: :unprocessable_entity
     end
   end

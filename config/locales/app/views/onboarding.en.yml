@@ -28,5 +28,28 @@ en:
       post_registration:
       sign_in_prompt: "Please sign in to continue."
   onboarding:
+    page_title: "Onboarding"
+    form:
+      heading: "Please Complete Your Profile"
+      first_name:
+        label: "First Name"
+        placeholder: "First Name"
+      last_name:
+        label: "Last Name"
+        placeholder: "Last Name"
+      birth_date:
+        label: "Date of Birth"
+      gender:
+        label: "Gender"
+        options:
+          male: "Male"
+          female: "Female"
+          other: "Other"
+          select: "Select"
+      title:
+        label: "Title"
+        placeholder: "E.g., Engineer, Teacher, etc."
+      submit: "Save"
     update:
       success: "Profile information saved successfully!"
+      logout: "Sign Out"

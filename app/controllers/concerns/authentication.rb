@@ -15,7 +15,7 @@ module Authentication
   private
 
   def current_user
-    Current.user ||= User.find_by(id: session[:user_id]) if session[:user_id]
+    @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
   end
 
   def authenticated?
@@ -24,17 +24,17 @@ module Authentication
 
   def require_authentication
     unless authenticated?
-      redirect_to login_path, alert: t("sessions.form.sign_in_prompt")
+      redirect_to login_path, alert: I18n.t("sessions.form.sign_in_prompt")
     end
   end
 
   def start_new_session_for(user)
     session[:user_id] = user.id
-    Current.user = user
+    @current_user = user
   end
 
   def terminate_session
     session[:user_id] = nil
-    Current.user = nil
+    @current_user = nil
   end
 end

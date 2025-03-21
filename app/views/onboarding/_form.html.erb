@@ -1,0 +1,39 @@
+<%= form_with model: current_user, url: onboarding_path, method: :patch, class: "form-container flex flex-col gap-6 p-6 bg-white shadow-lg rounded-lg max-w-md mx-auto" do |f| %>
+  <div class="form-header">
+    <h2 class="text-2xl font-semibold text-gray-800 text-center"><%= t("onboarding.form.heading") %></h2>
+  </div>
+
+  <%= render partial: "components/input", locals: { form: f, field: :first_name, type: :text, options: { placeholder: I18n.t("onboarding.form.first_name.placeholder") } } %>
+  <%= render partial: "components/input", locals: { form: f, field: :last_name, type: :text, options: { placeholder: I18n.t("onboarding.form.last_name.placeholder") } } %>
+  
+  <div class="flex flex-col gap-1">
+    <%= f.label :birth_date, I18n.t("onboarding.form.birth_date.label"), class: "text-sm font-medium text-gray-700" %>
+    <%= f.date_field :birth_date, class: "border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-teal-500 transition border-grey-300 bg-white" %>
+    
+    <%= render 'components/input_errors', errors: f.object.errors.full_messages_for(:birth_date) %>
+  </div>
+
+  <div class="flex flex-col gap-1">
+    <%= f.label :gender, I18n.t("onboarding.form.gender.label"), class: "text-sm font-medium text-gray-700" %>
+    <%= f.select :gender, 
+                [
+                  [I18n.t("onboarding.form.gender.options.male"), "Male"], 
+                  [I18n.t("onboarding.form.gender.options.female"), "Female"], 
+                  [I18n.t("onboarding.form.gender.options.other"), "Other"]
+                ], 
+                { include_blank: I18n.t("onboarding.form.gender.options.select") }, 
+                class: "border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-teal-500 transition border-grey-300 bg-white" %>
+    
+    <%= render 'components/input_errors', errors: f.object.errors.full_messages_for(:gender) %>
+  </div>
+
+  <div class="flex flex-col gap-1">
+    <%= f.label :title, I18n.t("onboarding.form.title.label"), class: "text-sm font-medium text-gray-700" %>
+    <%= f.text_field :title, class: "border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-teal-500 transition border-grey-300 bg-white", placeholder: I18n.t("onboarding.form.title.placeholder") %>
+    <%= render 'components/input_errors', errors: f.object.errors.full_messages_for(:title) %>
+  </div>
+
+  <div class="form-submit">
+    <%= f.submit I18n.t("onboarding.form.submit"), class: "submit-btn rounded-lg py-3 bg-teal-600 text-white font-semibold hover:bg-teal-700 transition duration-300 w-full max-w-xs mx-auto text-center cursor-pointer" %>
+  </div>
+<% end %> 

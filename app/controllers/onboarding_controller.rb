@@ -1,6 +1,6 @@
 class OnboardingController < ApplicationController
   before_action :check_activation_status
-  
+
   layout "unauthenticated"
 
   def show
@@ -9,9 +9,9 @@ class OnboardingController < ApplicationController
 
   def update
     @user = current_user
-    
+
     @user.skip_password_validation = true
-    
+
     if @user.update(onboarding_params)
       @user.update_column(:onboarding_completed_at, Time.current)
       redirect_to dashboard_path, notice: t(".success")

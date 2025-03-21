@@ -16,7 +16,6 @@ class OnboardingController < ApplicationController
       @user.update_column(:onboarding_completed_at, Time.current)
       redirect_to dashboard_path, notice: t(".success")
     else
-      puts "Validation errors: #{@user.errors.full_messages}"
       render :show, status: :unprocessable_entity
     end
   end

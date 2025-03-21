@@ -17,7 +17,6 @@ class OnboardingController < ApplicationController
       redirect_to dashboard_path, notice: t(".success")
     else
       puts "Validation errors: #{@user.errors.full_messages}"
-      Rails.logger.debug "Validation errors: #{@user.errors.full_messages}"
       render :show, status: :unprocessable_entity
     end
   end

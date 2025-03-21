@@ -1,15 +1,17 @@
+<% I18n.with_options(scope: 'user_mailer.activation_email') do |i18n| %>
 <div class="form-container flex flex-col gap-6 p-6 bg-white shadow-lg rounded-lg max-w-md mx-auto">
   <div class="form-header">
-    <h2 class="text-2xl font-semibold text-gray-800 text-center"><%= I18n.t('user_mailer.activation_email.welcome') %></h2>
+    <h2 class="text-2xl font-semibold text-gray-800 text-center"><%= i18n.t('welcome') %></h2>
   </div>
 
   <div class="text-center text-gray-600">
-    <p><%= I18n.t('user_mailer.activation_email.please_activate') %></p>
+    <p><%= i18n.t('please_activate') %></p>
   </div>
 
   <div class="form-submit">
-    <%= link_to I18n.t('user_mailer.activation_email.activate_account'), 
+    <%= link_to i18n.t('activate_account'), 
                 @activation_url, 
                 class: "submit-btn rounded-lg py-3 bg-teal-600 text-white font-semibold hover:bg-teal-700 transition duration-300 w-full max-w-xs mx-auto text-center cursor-pointer no-underline inline-block" %>
   </div>
 </div> 
+<% end %> 

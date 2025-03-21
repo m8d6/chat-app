@@ -5,33 +5,17 @@
 
   <%= render partial: "components/input", locals: { form: f, field: :first_name, type: :text, options: { placeholder: t(".first_name.placeholder") } } %>
   <%= render partial: "components/input", locals: { form: f, field: :last_name, type: :text, options: { placeholder: t(".last_name.placeholder") } } %>
+  <%= render partial: "components/input", locals: { form: f, field: :birth_date, type: :date, options: {} } %>
   
-  <div class="flex flex-col gap-1">
-    <%= f.label :birth_date, t(".birth_date.label"), class: "text-sm font-medium text-gray-700" %>
-    <%= f.date_field :birth_date, class: "border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-teal-500 transition border-grey-300 bg-white" %>
-    
-    <%= render 'components/input_errors', errors: f.object.errors.full_messages_for(:birth_date) %>
-  </div>
+  <%= render "components/select", 
+    form: f, 
+    field: :gender, 
+    label_text: t(".gender.label"),
+    options_list: [[t(".gender.options.male"), "Male"], [t(".gender.options.female"), "Female"], [t(".gender.options.other"), "Other"]],
+    select_options: { include_blank: t(".gender.options.select") } 
+  %>
 
-  <div class="flex flex-col gap-1">
-    <%= f.label :gender, t(".gender.label"), class: "text-sm font-medium text-gray-700" %>
-    <%= f.select :gender, 
-                [
-                  [t(".gender.options.male"), "Male"], 
-                  [t(".gender.options.female"), "Female"], 
-                  [t(".gender.options.other"), "Other"]
-                ], 
-                { include_blank: t(".gender.options.select") }, 
-                class: "border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-teal-500 transition border-grey-300 bg-white" %>
-    
-    <%= render 'components/input_errors', errors: f.object.errors.full_messages_for(:gender) %>
-  </div>
-
-  <div class="flex flex-col gap-1">
-    <%= f.label :title, t(".title.label"), class: "text-sm font-medium text-gray-700" %>
-    <%= f.text_field :title, class: "border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-teal-500 transition border-grey-300 bg-white", placeholder: t(".title.placeholder") %>
-    <%= render 'components/input_errors', errors: f.object.errors.full_messages_for(:title) %>
-  </div>
+  <%= render partial: "components/input", locals: { form: f, field: :title, type: :text, options: { placeholder: t(".title.placeholder") } } %>
 
   <div class="form-submit">
     <%= f.submit t(".submit"), class: "submit-btn rounded-lg py-3 bg-teal-600 text-white font-semibold hover:bg-teal-700 transition duration-300 w-full max-w-xs mx-auto text-center cursor-pointer" %>

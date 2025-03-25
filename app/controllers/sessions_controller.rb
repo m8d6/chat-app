@@ -24,12 +24,14 @@ class SessionsController < ApplicationController
       end
     else
       flash.now[:alert] = I18n.t("sessions.create.failure")
+
       render :new, status: :unprocessable_entity
     end
   end
 
   def destroy
     terminate_session
+
     redirect_to login_path, notice: I18n.t("onboarding.update.logout")
   end
 

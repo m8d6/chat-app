@@ -1,19 +1,19 @@
 Rails.application.routes.draw do
-   get "login", to: "sessions#new", as: :login
-   post "login", to: "sessions#create"
-   delete "logout", to: "sessions#destroy", as: :logout
+  get "login", to: "sessions#new", as: :login
+  post "login", to: "sessions#create"
+  delete "logout", to: "sessions#destroy", as: :logout
 
-   resource :registration, only: [ :new, :create ] do
-     get :confirm
-   end
+  resource :registration, only: [ :new, :create ] do
+    get :confirm
+  end
 
-   resource :onboarding, only: [ :show, :update ], controller: "onboarding"
+  resource :onboarding, only: [ :show, :update ], controller: "onboarding"
 
-   get "dashboard", to: "dashboard#index", as: :dashboard
+  get "dashboard", to: "dashboard#index", as: :dashboard
 
-   if Rails.env.development?
-      mount LetterOpenerWeb::Engine, at: "/letter_opener"
-   end
+  if Rails.env.development?
+     mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
 
-   root "registrations#new"
- end
+  root "registrations#new"
+end

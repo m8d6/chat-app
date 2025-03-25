@@ -18,7 +18,6 @@ class User < ApplicationRecord
     update_columns(
       email_confirmed: true,
       email_verified_at: Time.current,
-      confirmation_token: nil
     )
   end
 

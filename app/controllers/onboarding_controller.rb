@@ -12,8 +12,7 @@ class OnboardingController < ApplicationController
 
     @user.skip_password_validation = true
 
-    if @user.update(onboarding_params)
-      @user.update_column(:onboarding_completed_at, Time.current)
+    if @user.update(onboarding_params.merge(onboarding_completed_at: Time.current))
       redirect_to dashboard_path, notice: t(".success")
     else
       render :show, status: :unprocessable_entity
@@ -27,8 +26,8 @@ class OnboardingController < ApplicationController
   end
 
   def check_activation_status
-    unless current_user.activated?
-      redirect_to login_path, alert: t("sessions.create.activation_required")
-    end
+    return if current_user.activated?
+
+    redirect_to login_path, alert: I18n.t("sessions.create.activation_required")
   end
 end

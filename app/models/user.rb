@@ -1,16 +1,16 @@
 class User < ApplicationRecord
   attribute :terms_and_service, default: false
-  attr_accessor :skip_password_validation
   before_create :generate_activation_token
 
   normalizes :email_address, with: ->(e) { e.strip.downcase }
 
   has_secure_password
 
-  validates :password,              presence: true, password: true, confirmation: true, unless: :skip_password_validation
-  validates :password_confirmation, presence: true, unless: :skip_password_validation
-  validates :email_address,         presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
-  validates :terms_and_service,     acceptance: true, unless: :skip_password_validation
+  validates :password, presence: true, password: true, confirmation: true, on: :create
+  validates :password, confirmation: true, if: -> { password.present? }
+  validates :password_confirmation, presence: true, if: -> { password.present? }
+  validates :email_address, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :terms_and_service, acceptance: true, on: :create
 
   has_many :sessions, dependent: :destroy
 

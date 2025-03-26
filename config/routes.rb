@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   post "login", to: "sessions#create"
   delete "logout", to: "sessions#destroy", as: :logout
 
-  resource :registration, only: [ :new, :create ] do
+  resource :registration, only: [ :new, :create, :show ] do
     get :confirm
   end
 

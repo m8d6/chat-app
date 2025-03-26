@@ -6,6 +6,9 @@ en:
     confirm:
       activation_success: "Your account has been successfully activated. You can now login."
       invalid_token: "Invalid activation link."
+    show:
+      confirmation_required: "Email Confirmation Required"
+      check_email: "A confirmation email has been sent to your inbox. Please check your email and click the link to activate your account."
   user_mailer:
     activation_email:
       activation_subject: "Activate your account"

@@ -10,8 +10,6 @@ class OnboardingController < ApplicationController
   def update
     @user = current_user
 
-    @user.skip_password_validation = true
-
     if @user.update(onboarding_params.merge(onboarding_completed_at: Time.current))
       redirect_to dashboard_path, notice: t(".success")
     else

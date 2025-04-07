@@ -1,6 +1,5 @@
 class User < ApplicationRecord
   attribute :terms_and_service, default: false
-  before_create :generate_activation_token
 
   enum :gender, { male: 0, female: 1, other: 2 }
 
@@ -16,6 +15,10 @@ class User < ApplicationRecord
 
   has_many :sessions, dependent: :destroy
 
+  generates_token_for :email_confirmation, expires_in: 24.hours do
+    email_address
+  end
+
   def activate!
     update_columns(
       email_confirmed: true,
@@ -25,13 +28,5 @@ class User < ApplicationRecord
 
   def activated?
     email_confirmed?
-  end
-
-  private
-
-  def generate_activation_token
-    self.confirmation_token = SecureRandom.urlsafe_base64
-    self.email_confirmed = false
-    self.email_verified_at = nil
   end
 end

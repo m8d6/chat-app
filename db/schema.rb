@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_18_143834) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_07_130358) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -36,15 +36,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_18_143834) do
     t.string "gender"
     t.string "title"
     t.boolean "email_confirmed"
-    t.string "confirmation_token"
     t.string "email_verification_token"
     t.datetime "email_verified_at"
     t.datetime "onboarding_completed_at"
     t.string "activation_token"
     t.boolean "activated"
     t.datetime "activated_at"
+    t.boolean "onboarded", default: false
     t.index ["activation_token"], name: "index_users_on_activation_token"
-    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 

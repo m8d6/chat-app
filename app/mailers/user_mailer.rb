@@ -3,7 +3,7 @@ class UserMailer < ApplicationMailer
     @user = user
     @token = @user.generate_token_for(:email_confirmation)
     mail(
-      to: @user.email_address,
+      to: @user.email_address
     )
   end
 end

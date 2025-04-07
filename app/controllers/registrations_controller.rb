@@ -11,11 +11,9 @@ class RegistrationsController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-
       UserMailer.activation_email(@user).deliver_later
 
-      redirect_to new_registration_path,
-        notice: t(".success_with_activation")
+      redirect_to new_registration_path, notice: t(".success_with_activation")
     else
       flash.now[:alert] = t(".failure")
 
@@ -23,8 +21,8 @@ class RegistrationsController < ApplicationController
     end
   end
 
-  def show
-  end
+  def show; end
+
   def confirm
     @user = User.find_by!(confirmation_token: params[:token])
     @user.activate!

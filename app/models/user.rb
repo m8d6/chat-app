@@ -10,7 +10,7 @@ class User < ApplicationRecord
 
   validates :password, presence: true, password: true, confirmation: true, on: :create
   validates :password, confirmation: true, if: -> { password.present? }
-  validates :password_confirmation, presence: true, if: -> { password.present? }
+  validates :password_confirmation, presence: true, if: -> { password.present? }, on: :create
   validates :email_address, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :terms_and_service, acceptance: true, on: :create
 

@@ -23,17 +23,19 @@ module Authentication
   end
 
   def require_authentication
-    unless authenticated?
-      redirect_to login_path, alert: I18n.t("sessions.form.sign_in_prompt")
-    end
+    return if authenticated?
+
+    redirect_to login_path, alert: t("sessions.form.sign_in_prompt")
   end
 
   def start_new_session_for(user)
+    reset_session
     session[:user_id] = user.id
     @current_user = user
   end
 
   def terminate_session
+    reset_session
     session[:user_id] = nil
     @current_user = nil
   end

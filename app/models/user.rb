@@ -2,6 +2,8 @@ class User < ApplicationRecord
   attribute :terms_and_service, default: false
   before_create :generate_activation_token
 
+  enum :gender, { male: 0, female: 1, other: 2 }
+
   normalizes :email_address, with: ->(e) { e.strip.downcase }
 
   has_secure_password

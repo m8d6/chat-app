@@ -7,12 +7,14 @@
   <%= render partial: "components/input", locals: { form: f, field: :last_name, type: :text, options: { placeholder: t(".last_name.placeholder") } } %>
   <%= render partial: "components/input", locals: { form: f, field: :birth_date, type: :date, options: {} } %>
   
-  <%= render "components/select", 
-    form: f, 
-    field: :gender, 
-    label_text: t(".gender.label"),
-    options_list: [[t(".gender.options.male"), "Male"], [t(".gender.options.female"), "Female"], [t(".gender.options.other"), "Other"]],
-    select_options: { include_blank: t(".gender.options.select") } 
+  <%= render partial: "components/select",
+    locals: { 
+      form: f, 
+      field: :gender, 
+      label_text: User.human_attribute_name(:gender),
+      options_list: User.genders.keys.map { |w| [User.human_attribute_name("gender_enum.#{w}"), w] },
+      select_options: { include_blank: t(".gender.options.select") } 
+    } 
   %>
 
   <%= render partial: "components/input", locals: { form: f, field: :title, type: :text, options: { placeholder: t(".title.placeholder") } } %>

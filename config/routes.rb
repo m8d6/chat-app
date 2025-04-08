@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     get :confirm
   end
 
-  resource :onboarding, only: [ :show, :update ], controller: "onboarding"
+  resource :onboarding, only: %i[ show update ], controller: "onboarding"
 
   get "dashboard", to: "dashboard#index", as: :dashboard
 

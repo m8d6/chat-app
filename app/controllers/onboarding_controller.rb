@@ -26,6 +26,6 @@ class OnboardingController < ApplicationController
   def check_activation_status
     return if current_user.activated?
 
-    redirect_to login_path, alert: I18n.t("sessions.create.activation_required")
+    redirect_to new_session_path, alert: I18n.t("sessions.create.activation_required")
   end
 end

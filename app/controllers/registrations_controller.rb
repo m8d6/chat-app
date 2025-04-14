@@ -27,9 +27,9 @@ class RegistrationsController < ApplicationController
     @user = User.find_by_token_for!(:email_confirmation, params[:token])
     @user.activate!
 
-    redirect_to login_path, notice: t(".activation_success")
+    redirect_to new_session_path, notice: t(".activation_success")
   rescue ActiveSupport::MessageVerifier::InvalidSignature, ActiveRecord::RecordNotFound
-    redirect_to login_path, alert: t(".invalid_token")
+    redirect_to new_session_path, alert: t(".invalid_token")
   end
 
   private

@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  get "login", to: "sessions#new", as: :login
-  post "login", to: "sessions#create"
-  delete "logout", to: "sessions#destroy", as: :logout
+  resource :session, only: %i[new create destroy]
 
   resource :registration, only: [ :new, :create, :show ] do
     get :confirm

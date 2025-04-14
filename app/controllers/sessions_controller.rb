@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
     @session = Session.new(session_params)
 
     if @session.save
-      return redirect_to login_path, alert: I18n.t("...") if !@session.user.activated?
+      return redirect_to new_session_path, alert: I18n.t("...") if !@session.user.activated?
 
       start_new_session_for(@session.user)
 
@@ -30,7 +30,7 @@ class SessionsController < ApplicationController
   def destroy
     terminate_session
 
-    redirect_to login_path, notice: I18n.t("onboarding.update.logout")
+    redirect_to new_session_path, notice: I18n.t("onboarding.update.logout")
   end
 
   private

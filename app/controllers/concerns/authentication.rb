@@ -25,7 +25,7 @@ module Authentication
   def require_authentication
     return if authenticated?
 
-    redirect_to login_path, alert: t("sessions.form.sign_in_prompt")
+    redirect_to new_session_path, alert: t("sessions.form.sign_in_prompt")
   end
 
   def start_new_session_for(user)

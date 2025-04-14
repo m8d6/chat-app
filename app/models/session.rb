@@ -15,10 +15,13 @@ class Session
   private
 
   def authenticate_user
-    @user = User.find_by(email_address: email_address)&.authenticate(password)
+    @user = User.find_by(email_address: email_address)
 
-    return if @user
-
-    errors.add :base, :invalid_credentials
+    if @user&.authenticate(password)
+      @user
+    else
+      errors.add :base, :invalid_credentials
+      nil
+    end
   end
 end

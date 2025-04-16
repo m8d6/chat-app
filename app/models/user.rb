@@ -12,7 +12,7 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true,     if: -> { password.present? }, on: :create
   validates :email_address,         presence: true,  uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :terms_and_service,     acceptance: true, on: :create
-
+  validates :first_name, :last_name, :birth_date, :gender, :title, presence: true, if: :should_validate_onboarding_completion?
 
   has_many :sessions, dependent: :destroy
 
@@ -29,5 +29,10 @@ class User < ApplicationRecord
 
   def activated?
     email_confirmed?
+  end
+
+  private
+  def should_validate_onboarding_completion?
+    onboarding_completed_at_changed? || onboarding_completed_at.present?
   end
 end

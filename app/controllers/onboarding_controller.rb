@@ -13,6 +13,7 @@ class OnboardingController < ApplicationController
     if @user.update(onboarding_params.merge(onboarding_completed_at: Time.current))
       redirect_to dashboard_path, notice: t(".success")
     else
+      flash.now[:alert] = t(".validation_error")
       render :show, status: :unprocessable_entity
     end
   end

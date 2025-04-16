@@ -4,6 +4,10 @@ class RegistrationsController < ApplicationController
   layout "unauthenticated"
 
   def new
+    if authenticated? && current_user.onboarding_completed_at.present?
+      return redirect_to dashboard_path
+    end
+
     @user = User.new
   end
 

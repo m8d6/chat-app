@@ -21,14 +21,16 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="bg-gray-200 h-full w-full flex flex-col justify-center">
+  <body class="bg-gray-200 h-full w-full">
 
     
     <%= render "shared/flash" %>
 
-    <main class="p-6 mx-auto w-lg bg-white rounded shadow-md">
-      <%= yield %>
-    </main>
+    <div class="flex items-center justify-center min-h-full">
+      <main class="p-6">
+        <%= yield %>
+      </main>
+    </div>
 
   </body>
 </html>

@@ -26,7 +26,7 @@ class RegistrationsControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to new_registration_path
-    assert_equal I18n.t("registrations.create.success"), flash[:notice]
+    assert_equal I18n.t("registrations.create.success_with_activation"), flash[:notice]
   end
 
   test "should not create user without terms acceptance" do

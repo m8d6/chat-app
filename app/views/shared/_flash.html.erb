@@ -2,7 +2,7 @@
   <% flash_color = flash[:notice].present? ? "green" : "red" %>
 
   <div data-controller="flash" 
-       class="fixed top-4 left-1/2 transform -translate-x-1/2 bg-<%= flash_color %>-100 border border-<%= flash_color %>-400 text-<%= flash_color %>-700 px-4 py-3 rounded shadow-lg transition-opacity duration-300"
+       class="fixed top-4 right-4 bg-<%= flash_color %>-100 border border-<%= flash_color %>-400 text-<%= flash_color %>-700 px-4 py-3 rounded shadow-lg transition-opacity duration-300"
        role="alert">
     <span class="block sm:inline">
       <%= flash[:notice].present? ? flash[:notice] : flash[:alert] %>

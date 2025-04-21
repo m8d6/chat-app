@@ -4,4 +4,7 @@ en:
       activation_subject: "Activate your account"
       welcome: "Welcome!"
       please_activate: "Please click the link below to activate your account:"
-      activate_account: "Activate My Account" 
+      activate_account: "Activate My Account"
+      subject: "Activate Your Account"
+    password_reset_email:
+      subject: "Reset Your Password" 

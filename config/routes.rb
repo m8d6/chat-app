@@ -5,6 +5,9 @@ Rails.application.routes.draw do
     get :confirm
   end
 
+  # Password Resets
+  resources :password_resets, only: [:new, :create, :edit, :update], param: :token
+
   resource :onboarding, only: %i[ show update ], controller: "onboarding"
 
   get "dashboard", to: "dashboard#index", as: :dashboard

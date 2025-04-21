@@ -4,7 +4,7 @@ class UserMailer < ApplicationMailer
     @token = @user.generate_token_for(:email_confirmation)
     mail(
       to: @user.email_address,
-      subject: t('.subject')
+      subject: t(".subject")
     )
   end
 
@@ -15,7 +15,7 @@ class UserMailer < ApplicationMailer
 
     mail(
       to: @user.email_address,
-      subject: t('.subject')
+      subject: t(".subject")
     )
   end
 end

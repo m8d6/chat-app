@@ -71,7 +71,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_15_082737) do
     t.datetime "activated_at"
     t.boolean "onboarding_completed", default: false
     t.date "birthdate"
-    t.string "profile_image"
     t.integer "gender"
     t.index ["activation_token"], name: "index_users_on_activation_token"
     t.index ["email_address"], name: "index_users_on_email_address", unique: true

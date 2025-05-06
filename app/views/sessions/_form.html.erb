@@ -1,0 +1,23 @@
+<%= form_with model: @session, url: session_path, class: "form-container flex flex-col gap-6 p-6 bg-white shadow-lg rounded-lg max-w-md mx-auto" do |f| %>
+  <div class="form-header">
+    <h2 class="text-2xl font-semibold text-gray-800 text-center"><%= I18n.t('sessions.form.title') %></h2>
+  </div>
+
+  <%= render partial: "components/input", locals: { form: f, field: :email_address, type: :email, options: { placeholder: I18n.t("sessions.form.email.placeholder") } } %>
+  <%= render partial: "components/input", locals: { form: f, field: :password, type: :password, options: { placeholder: I18n.t("sessions.form.password.placeholder") } } %>
+
+  <div class="form-submit">
+    <%= f.submit I18n.t('sessions.form.submit'), class: "submit-btn rounded-lg py-3 bg-teal-600 text-white font-semibold hover:bg-teal-700 transition duration-300 w-full max-w-xs mx-auto text-center cursor-pointer" %>
+  </div>
+
+  <div class="mt-6 text-center text-sm space-y-2">
+    <div>
+      <%= link_to t(".forgot_password"), new_password_reset_path, class: "font-medium text-teal-600 hover:text-teal-500 hover:underline" %>
+    </div>
+
+    <div>
+      <span class="text-gray-600"><%= t('.no_account') %></span>
+      <%= link_to t('.register_link'), new_registration_path, class: "font-medium text-teal-600 hover:text-teal-500 hover:underline" %>
+    </div>
+  </div>
+<% end %> 

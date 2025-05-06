@@ -1,4 +1,20 @@
 Rails.application.routes.draw do
-   resource :registration, only: [ :new, :create ]
-   root "registrations#new"
+  resource :session, only: %i[new create destroy]
+
+  resource :registration, only: [ :new, :create, :show ] do
+    get :confirm
+  end
+
+  # Password Resets
+  resources :password_resets, only: [ :new, :create, :edit, :update ], param: :token
+
+  resource :onboarding, only: %i[ show update ], controller: "onboarding"
+
+  get "dashboard", to: "dashboard#index", as: :dashboard
+
+  if Rails.env.development?
+     mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
+
+  root "registrations#new"
 end

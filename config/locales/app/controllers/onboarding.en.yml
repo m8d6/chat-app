@@ -1,0 +1,8 @@
+en:
+  onboarding:
+    show:
+      # Gerekirse form başlığı, placeholder vs. eklenebilir
+      heading: "Complete Your Profile"
+    update:
+      success: "Your profile has been updated successfully."
+      validation_error: "Please fill in all required fields." 

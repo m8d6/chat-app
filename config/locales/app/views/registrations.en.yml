@@ -12,3 +12,12 @@ en:
         text: "I have read and understood the "
         link: "Terms and Services"
       submit: "Register"
+    create:
+      success_with_activation: "Registration successful! Please check your email."
+      failure: "Registration failed."
+    confirm:
+      activation_success: "Your account has been successfully activated. You can now login."
+      invalid_token: "Invalid activation link."
+    show:
+      confirmation_required: "Email Confirmation Required"
+      check_email: "A confirmation email has been sent to your inbox. Please check your email and click the link to activate your account."

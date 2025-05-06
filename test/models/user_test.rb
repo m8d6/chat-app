@@ -40,15 +40,17 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "password should meet minimum length requirement" do
-    @user.password = "short"
-    @user.password_confirmation = "short"
+    new_user = users(:first).dup
+    new_user.password = "short"
+    new_user.password_confirmation = "short"
 
-    assert_error_on @user, :password, :too_short
+    assert_error_on new_user, :password, :too_short
   end
 
   test "terms and service should be accepted" do
-    @user.terms_and_service = false
+    new_user = users(:first).dup
+    new_user.terms_and_service = false
 
-    assert_error_on @user, :terms_and_service, :accepted
+    assert_error_on new_user, :terms_and_service, :accepted
   end
 end

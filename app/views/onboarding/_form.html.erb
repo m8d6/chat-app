@@ -1,0 +1,25 @@
+<%= form_with model: user, url: onboarding_path, method: :patch, class: "form-container flex flex-col gap-6 p-6 bg-white shadow-lg rounded-lg max-w-md mx-auto", data: { turbo: false } do |f| %>
+  <div class="form-header">
+    <h2 class="text-2xl font-semibold text-gray-800 text-center"><%= t('.heading') %></h2>
+  </div>
+
+  <%= render partial: "components/input", locals: { form: f, field: :first_name, type: :text, options: { placeholder: t(".first_name.placeholder") } } %>
+  <%= render partial: "components/input", locals: { form: f, field: :last_name, type: :text, options: { placeholder: t(".last_name.placeholder") } } %>
+  <%= render partial: "components/input", locals: { form: f, field: :birth_date, type: :date, options: {} } %>
+  
+  <%= render partial: "components/select",
+    locals: { 
+      form: f, 
+      field: :gender, 
+      label_text: User.human_attribute_name(:gender),
+      options_list: User.genders.keys.map { |w| [User.human_attribute_name("gender_enum.#{w}"), w] },
+      select_options: { include_blank: t(".gender.options.select") } 
+    } 
+  %>
+
+  <%= render partial: "components/input", locals: { form: f, field: :title, type: :text, options: { placeholder: t(".title.placeholder") } } %>
+
+  <div class="form-submit">
+    <%= f.submit t(".submit"), class: "submit-btn rounded-lg py-3 bg-teal-600 text-white font-semibold hover:bg-teal-700 transition duration-300 w-full max-w-xs mx-auto text-center cursor-pointer" %>
+  </div>
+<% end %>

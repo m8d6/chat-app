@@ -1,0 +1,16 @@
+en:
+  sessions:
+    create:
+      success: "Successfully signed in!"
+      failure: "Invalid email or password."
+      activation_required: "Please activate your account first. Check your email for activation instructions."
+    form:
+      title: "Sign in to your account"
+      email:
+        placeholder: "Enter your email"
+      password:
+        placeholder: "Enter your password"
+      submit: "Sign in"
+      forgot_password: "Forgot Password?"
+      no_account: "Don't have an account?"
+      sign_in_prompt: "Please sign in to continue." 

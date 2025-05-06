@@ -12,9 +12,9 @@ class PasswordResetsController < ApplicationController
   def create
     @user = User.find_by(email_address: params.dig(:user, :email_address)&.downcase&.strip)
 
-    if @user.present? && @user.activated?
+    if @user&.activated?
       token = @user.generate_token_for(:password_reset)
-      UserMailer.password_reset_email(@user, token).deliver_now
+      UserMailer.password_reset_email(@user, token).deliver_later
     end
 
     redirect_to new_session_path, notice: t(".instructions_sent")
@@ -25,8 +25,6 @@ class PasswordResetsController < ApplicationController
 
   def update
     if @user.update(password_params)
-
-
       redirect_to new_session_path, notice: t(".success")
     else
       render :edit, status: :unprocessable_entity
@@ -39,7 +37,7 @@ class PasswordResetsController < ApplicationController
     @token = params[:token]
     @user = User.find_by_token_for(:password_reset, @token)
 
-    unless @user
+    unless @user&.activated?
       redirect_to new_session_path, alert: t(".invalid_token")
     end
   rescue ActiveSupport::MessageVerifier::InvalidSignature, ActiveSupport::MessageVerifier::ExpiredSignature
